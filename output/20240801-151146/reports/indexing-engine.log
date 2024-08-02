@@ -1,0 +1,641 @@
+15:11:46,52 graphrag.config.read_dotenv INFO Loading pipeline .env file
+15:11:46,58 graphrag.index.cli INFO using default configuration: {
+    "llm": {
+        "api_key": "REDACTED, length 56",
+        "type": "openai_chat",
+        "model": "mixtral-8x7b-32768",
+        "max_tokens": 3000,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "request_timeout": 180.0,
+        "api_base": "https://api.groq.com/openai/v1",
+        "api_version": null,
+        "proxy": null,
+        "cognitive_services_endpoint": null,
+        "deployment_name": null,
+        "model_supports_json": true,
+        "tokens_per_minute": 3000,
+        "requests_per_minute": 10,
+        "max_retries": 10,
+        "max_retry_wait": 10.0,
+        "sleep_on_rate_limit_recommendation": true,
+        "concurrent_requests": 25
+    },
+    "parallelization": {
+        "stagger": 0.3,
+        "num_threads": 50
+    },
+    "async_mode": "threaded",
+    "root_dir": ".",
+    "reporting": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/reports",
+        "storage_account_blob_url": null
+    },
+    "storage": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/artifacts",
+        "storage_account_blob_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache",
+        "storage_account_blob_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "source_column": null,
+        "timestamp_column": null,
+        "timestamp_format": null,
+        "text_column": "text",
+        "title_column": null,
+        "document_attribute_columns": []
+    },
+    "embed_graph": {
+        "enabled": false,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "strategy": null
+    },
+    "embeddings": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-smallnomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_0.gguf",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "http://localhost:1234/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": null,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "skip": [],
+        "vector_store": null,
+        "strategy": null
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": null
+    },
+    "snapshots": {
+        "graphml": false,
+        "raw_entities": false,
+        "top_level_nodes": false
+    },
+    "entity_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/entity_extraction.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null
+    },
+    "summarize_descriptions": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null
+    },
+    "community_reports": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/community_report.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null
+    },
+    "claim_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "enabled": false,
+        "prompt": "prompts/claim_extraction.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "strategy": null
+    },
+    "umap": {
+        "enabled": false
+    },
+    "local_search": {
+        "text_unit_prop": 0.5,
+        "community_prop": 0.1,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32
+    },
+    "encoding_model": "cl100k_base",
+    "skip_workflows": []
+}
+15:11:46,61 graphrag.index.create_pipeline_config INFO skipping workflows 
+15:11:46,62 graphrag.index.run INFO Running pipeline
+15:11:46,62 graphrag.index.storage.file_pipeline_storage INFO Creating file storage at output\20240801-151146\artifacts
+15:11:46,62 graphrag.index.input.load_input INFO loading input from root_dir=input
+15:11:46,62 graphrag.index.input.load_input INFO using file storage for input
+15:11:46,64 graphrag.index.storage.file_pipeline_storage INFO search input for files matching .*\.txt$
+15:11:46,64 graphrag.index.input.text INFO found text files from input, found [('TESLA_20230127_0000.txt', {})]
+15:11:46,65 graphrag.index.input.text INFO Found 1 files, loading 1
+15:11:46,65 graphrag.index.workflows.load INFO Workflow Run Order: ['create_base_text_units', 'create_base_extracted_entities', 'create_summarized_entities', 'create_base_entity_graph', 'create_final_entities', 'create_final_nodes', 'create_final_communities', 'join_text_units_to_entity_ids', 'create_final_relationships', 'join_text_units_to_relationship_ids', 'create_final_community_reports', 'create_final_text_units', 'create_base_documents', 'create_final_documents']
+15:11:46,65 graphrag.index.run INFO Final # of rows loaded: 1
+15:11:46,272 graphrag.index.run INFO Running workflow: create_base_text_units...
+15:11:46,272 graphrag.index.run INFO dependencies for create_base_text_units: []
+15:11:46,280 datashaper.workflow.workflow INFO executing verb orderby
+15:11:46,280 datashaper.workflow.workflow INFO executing verb zip
+15:11:46,284 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:11:46,290 datashaper.workflow.workflow INFO executing verb chunk
+15:11:46,432 datashaper.workflow.workflow INFO executing verb select
+15:11:46,439 datashaper.workflow.workflow INFO executing verb unroll
+15:11:46,440 datashaper.workflow.workflow INFO executing verb rename
+15:11:46,446 datashaper.workflow.workflow INFO executing verb genid
+15:11:46,451 datashaper.workflow.workflow INFO executing verb unzip
+15:11:46,455 datashaper.workflow.workflow INFO executing verb copy
+15:11:46,460 datashaper.workflow.workflow INFO executing verb filter
+15:11:46,470 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_text_units.parquet
+15:11:46,592 graphrag.index.run INFO Running workflow: create_base_extracted_entities...
+15:11:46,592 graphrag.index.run INFO dependencies for create_base_extracted_entities: ['create_base_text_units']
+15:11:46,592 graphrag.index.run INFO read table from storage: create_base_text_units.parquet
+15:11:46,610 datashaper.workflow.workflow INFO executing verb entity_extract
+15:11:46,612 graphrag.llm.openai.create_openai_client INFO Creating OpenAI client base_url=https://api.groq.com/openai/v1
+15:11:46,768 graphrag.index.llm.load_llm INFO create TPM/RPM limiter for mixtral-8x7b-32768: TPM=3000, RPM=10
+15:11:46,768 graphrag.index.llm.load_llm INFO create concurrency limiter for mixtral-8x7b-32768: 25
+15:11:46,797 datashaper.workflow.workflow INFO executing verb merge_graphs
+15:11:46,801 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_extracted_entities.parquet
+15:11:46,923 graphrag.index.run INFO Running workflow: create_summarized_entities...
+15:11:46,923 graphrag.index.run INFO dependencies for create_summarized_entities: ['create_base_extracted_entities']
+15:11:46,924 graphrag.index.run INFO read table from storage: create_base_extracted_entities.parquet
+15:11:46,947 datashaper.workflow.workflow INFO executing verb summarize_descriptions
+15:11:47,355 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,360 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: "\\"FERRARI NV\\""\nDescription List: ["\\"Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley beneficially owned 1% or more of a class of common equity securities as of December 30, 2022.\\"\\"Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage and for which Diego Ortega Laya owns securities.\\"", "\\"Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.\\""]\n#######\nOutput:\n'}
+15:11:47,360 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,360 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,360 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,362 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LI-CYCLE HOLDINGS CORP.\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Li-Cycle Holdings Corp.\\"", "\\"Morgan Stanley provides research coverage for Li-Cycle Holdings Corp. and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,362 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,363 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LEAR CORPORATION\\""]\nDescription List: ["\\"Morgan Stanley has received compensation for products and services other than investment banking services from Lear Corporation.\\"", "\\"Morgan Stanley provides research coverage for Lear Corporation and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,363 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,363 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,363 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"HERTZ GLOBAL HOLDINGS INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Hertz Global Holdings Inc and has an employee, director or consultant of Morgan Stanley who is a director of Hertz Global Holdings Inc.\\"", "\\"Morgan Stanley provides research coverage for Hertz Global Holdings Inc and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,363 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,363 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,363 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"MOBILEYE GLOBAL INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Mobileye Global Inc.\\"", "\\"Morgan Stanley provides research coverage for Mobileye Global Inc, managed or co-managed a public offering of securities in the last 12 months, and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,363 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,363 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,368 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"QUANTUMSCAPE CORP\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Quantumscape Corp.\\"", "\\"Morgan Stanley provides research coverage for Quantumscape Corp and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,368 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:47,370 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:47,370 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LITHIA MOTORS INC.\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Lithia Motors Inc.\\"", "\\"Morgan Stanley provides research coverage for Lithia Motors Inc. and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:47,370 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 1/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:48,661 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:48,661 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LEAR CORPORATION\\""]\nDescription List: ["\\"Morgan Stanley has received compensation for products and services other than investment banking services from Lear Corporation.\\"", "\\"Morgan Stanley provides research coverage for Lear Corporation and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:48,661 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:48,793 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:48,795 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"MOBILEYE GLOBAL INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Mobileye Global Inc.\\"", "\\"Morgan Stanley provides research coverage for Mobileye Global Inc, managed or co-managed a public offering of securities in the last 12 months, and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:48,795 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:48,818 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:48,820 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: "\\"FERRARI NV\\""\nDescription List: ["\\"Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley beneficially owned 1% or more of a class of common equity securities as of December 30, 2022.\\"\\"Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage and for which Diego Ortega Laya owns securities.\\"", "\\"Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.\\""]\n#######\nOutput:\n'}
+15:11:48,820 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:11:54,990 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:11:54,990 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"HERTZ GLOBAL HOLDINGS INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Hertz Global Holdings Inc and has an employee, director or consultant of Morgan Stanley who is a director of Hertz Global Holdings Inc.\\"", "\\"Morgan Stanley provides research coverage for Hertz Global Holdings Inc and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:11:54,990 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:01,0 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:12:01,5 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"QUANTUMSCAPE CORP\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Quantumscape Corp.\\"", "\\"Morgan Stanley provides research coverage for Quantumscape Corp and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:12:01,5 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:07,32 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:12:07,33 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LI-CYCLE HOLDINGS CORP.\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Li-Cycle Holdings Corp.\\"", "\\"Morgan Stanley provides research coverage for Li-Cycle Holdings Corp. and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:12:07,33 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:13,20 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:12:13,20 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"LITHIA MOTORS INC.\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Lithia Motors Inc.\\"", "\\"Morgan Stanley provides research coverage for Lithia Motors Inc. and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:12:13,20 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 2/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:19,25 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:12:19,30 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"MOBILEYE GLOBAL INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Mobileye Global Inc.\\"", "\\"Morgan Stanley provides research coverage for Mobileye Global Inc, managed or co-managed a public offering of securities in the last 12 months, and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:12:19,30 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 3/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:23,753 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+15:12:23,753 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': '\nYou are a helpful assistant responsible for generating a comprehensive summary of the data provided below.\nGiven one or two entities, and a list of descriptions, all related to the same entity or group of entities.\nPlease concatenate all of these into a single, comprehensive description. Make sure to include information collected from all the descriptions.\nIf the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.\nMake sure it is written in third person, and include the entity names so we the have full context.\n\n#######\n-Data-\nEntities: ["\\"MORGAN STANLEY\\"", "\\"MOBILEYE GLOBAL INC\\""]\nDescription List: ["\\"Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Mobileye Global Inc.\\"", "\\"Morgan Stanley provides research coverage for Mobileye Global Inc, managed or co-managed a public offering of securities in the last 12 months, and expects to receive or intends to seek compensation for investment banking services.\\""]\n#######\nOutput:\n'}
+15:12:23,753 graphrag.llm.base.rate_limiting_llm WARNING summarize failed to invoke LLM 4/10 attempts. Cause: rate limit exceeded, will retry. Recommended sleep for 0 seconds. Follow recommendation? True
+15:12:30,7 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:12:36,224 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:12:42,63 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:12:48,10 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:12:54,105 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:13:00,39 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:13:05,535 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.5469999999986612. input_tokens=177, output_tokens=46
+15:13:12,35 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:13:17,538 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.75. input_tokens=232, output_tokens=89
+15:13:23,550 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.5789999999979045. input_tokens=208, output_tokens=93
+15:13:29,551 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.5160000000032596. input_tokens=186, output_tokens=79
+15:13:35,559 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.5930000000007567. input_tokens=190, output_tokens=104
+15:13:41,567 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 2 retries took 0.5159999999959837. input_tokens=186, output_tokens=79
+15:13:47,564 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "summarize" with 4 retries took 0.5. input_tokens=202, output_tokens=76
+15:13:47,577 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_summarized_entities.parquet
+15:13:47,697 graphrag.index.run INFO Running workflow: create_base_entity_graph...
+15:13:47,697 graphrag.index.run INFO dependencies for create_base_entity_graph: ['create_summarized_entities']
+15:13:47,699 graphrag.index.run INFO read table from storage: create_summarized_entities.parquet
+15:13:47,723 datashaper.workflow.workflow INFO executing verb cluster_graph
+15:13:47,749 datashaper.workflow.workflow INFO executing verb select
+15:13:47,751 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_entity_graph.parquet
+15:13:47,870 graphrag.index.run INFO Running workflow: create_final_entities...
+15:13:47,870 graphrag.index.run INFO dependencies for create_final_entities: ['create_base_entity_graph']
+15:13:47,870 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+15:13:47,895 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:13:47,905 datashaper.workflow.workflow INFO executing verb rename
+15:13:47,911 datashaper.workflow.workflow INFO executing verb select
+15:13:47,916 datashaper.workflow.workflow INFO executing verb dedupe
+15:13:47,922 datashaper.workflow.workflow INFO executing verb rename
+15:13:47,932 datashaper.workflow.workflow INFO executing verb filter
+15:13:47,950 datashaper.workflow.workflow INFO executing verb text_split
+15:13:47,960 datashaper.workflow.workflow INFO executing verb drop
+15:13:47,968 datashaper.workflow.workflow INFO executing verb merge
+15:13:47,986 datashaper.workflow.workflow INFO executing verb text_embed
+15:13:47,990 graphrag.llm.openai.create_openai_client INFO Creating OpenAI client base_url=http://localhost:1234/v1
+15:13:48,130 graphrag.index.llm.load_llm INFO create TPM/RPM limiter for text-embedding-3-smallnomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_0.gguf: TPM=0, RPM=0
+15:13:48,130 graphrag.index.llm.load_llm INFO create concurrency limiter for text-embedding-3-smallnomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_0.gguf: 25
+15:13:48,135 graphrag.index.verbs.text.embed.strategies.openai INFO embedding 78 inputs via 78 snippets using 5 batches. max_batch_size=16, max_tokens=8191
+15:16:48,169 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"BORGWARNER INC.":BorgWarner Inc. is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of the entities mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"CARVANA CO":Carvana Co is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. The company is one of the entities mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"FISKER INC":Fisker Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"FORD MOTOR COMPANY":Ford Motor Company is an organization that is part of Morgan Stanley\'s research coverage, for which Morgan Stanley managed or co-managed a public offering of securities in the last 12 months and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. Additionally, Ford Motor Company is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"HERTZ GLOBAL HOLDINGS INC":Hertz Global Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley and having a relationship with an employee, director, or consultant of Morgan Stanley.', '"LEAR CORPORATION":Lear Corporation is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. Additionally, Lear Corporation is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"LI-CYCLE HOLDINGS CORP.":Li-Cycle Holdings Corp. is an organization that is both part of Morgan Stanley\'s research coverage and one of the companies mentioned in the text. Morgan Stanley expects to receive or intends to seek compensation for investment banking services in relation to Li-Cycle Holdings Corp. This information indicates that there is a business relationship between the two entities, with Morgan Stanley providing investment banking services and conducting research on Li-Cycle Holdings Corp.', '"LITHIA MOTORS INC.":Lithia Motors Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text. Lithia Motors Inc. is expected to receive or has sought compensation for investment banking services from Morgan Stanley.', '"MOBILEYE GLOBAL INC":Mobileye Global Inc is an organization that is part of Morgan Stanley\'s research coverage, and it has been involved with Morgan Stanley in a public offering of securities within the last 12 months for which Morgan Stanley managed or co-managed and expects to receive or intends to seek compensation for investment banking services. The company is mentioned multiple times in the text, and it is one of the companies potentially relevant to Morgan Stanley\'s services, possibly receiving or seeking compensation for investment banking services from Morgan Stanley.', '"QUANTUMSCAPE CORP":Quantumscape Corp is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley. This indicates that Quantumscape Corp has a business relationship with Morgan Stanley, where the financial institution provides investment banking services and possibly research coverage, and Quantumscape Corp may receive or seek compensation for these services.', '"ERTZ GLOBAL HOLDINGS INC":"ertz Global Holdings Inc is one of the companies mentioned in the text, potentially relevant to Morgan Stanley\'s services."', '"TESLA INC.":"Tesla Inc. is one of the companies mentioned in the text, potentially relevant to Morgan Stanley\'s services."', '"LUCID GROUP INC":"Lucid Group Inc is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"MAGNA INTERNATIONAL INC.":"Magna International Inc. is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"RIVIAN AUTOMOTIVE, INC.":"Rivian Automotive, Inc. is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"VISTEON CORPORATION":"Visteon Corporation is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley."']}
+15:16:48,171 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"MORGAN STANLEY RESEARCH":"Morgan Stanley Research is a division of Morgan Stanley that provides the stock analysis in the text.">)**', '"MORGAN STANLEY INSTITUTIONAL EQUITIES DIVISION":"Morgan Stanley Institutional Equities Division is a division of Morgan Stanley that is mentioned in the text.">)**', '"JAN \'22":"JAN \'22 is a point in time, referenced as the start of the historical stock performance data.">)**', '"JUL \'22":"JUL \'22 is a point in time, referenced as a date for a stock price.">)**', '"JAN \'23":"JAN \'23 is a point in time, referenced as the current stock price.">)**', '"JAN \'24":"JAN \'24 is a point in time, referenced as the price target.">)**', '"$70.00":"$70.00 is a stock price, referenced as a historical stock price and a bear case value.">)**', '"$160.27":"$160.27 is a stock price, referenced as the stock price at the time of the analysis.">)**', '"$390.00":"$390.00 is a stock price, referenced as the bull case value.">)**', '"$220.00":"$220.00 is a stock price, referenced as the base case value and the price target.">)**', '"MS RATING":"MS Rating is a concept, referenced as a rating given by Morgan Stanley Research.">)**', '"EQUAL-WEIGHT":EQUAL-WEIGHT is a concept referred to in the context of stock portfolio allocation, as well as a stock rating assigned by Morgan Stanley. As a portfolio allocation concept, equal-weight refers to a strategy where an investor divides their investment equally among the securities in their portfolio. On the other hand, when used as a stock rating by Morgan Stanley, equal-weight indicates that the stock\'s total return is expected to be in line with the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months.', '"UNDERWEIGHT":Underweight is a concept used in the context of stock portfolio allocation, and it is also a stock rating assigned by Morgan Stanley. As a portfolio allocation concept, underweight refers to a situation where an investor holds less of a particular stock or industry in their portfolio compared to its benchmark index. On the other hand, when used as a stock rating by Morgan Stanley, underweight indicates that the stock\'s total return is expected to be below the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months.', '"PROB (>220.00)":"Prob (>220.00) is a concept, referenced as the probability of the stock price exceeding $220.00.">)**', '"PROB (<70.00)":"Prob (<70.00) is a concept, referenced as the probability of the stock price being below $70.00.">)**', '"DISRUPTION":"Disruption is a concept, referenced as a risk reward theme.">)**']}
+15:16:48,171 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"MORGAN STANLEY & CO. LLC":"Morgan Stanley & Co. LLC is an organization that has provided an analysis of Tesla Inc\'s price cuts."', '"TESLA INC":Tesla Inc is an electric vehicle company and an organization that is part of Morgan Stanley\'s research coverage. Recently, Tesla Inc reduced its prices across a significant portion of its product range. Morgan Stanley expects to receive or intends to seek compensation for investment banking services for Tesla Inc. The company is also involved in the production of electric vehicles and energy products, and is the primary focus of analysis in the given text.', '"NORTH AMERICA":"North America is the continent where Tesla Inc operates."', '"ADAM JONAS, CFA":"Adam Jonas, CFA is an equity analyst who provided a stock rating, industry view, and price target for Tesla Inc."', '"EVAN SILVERBERG, CFA, CPA":"Evan Silverberg, CFA, CPA is a research associate who contributed to the analysis of Tesla Inc."', '"MODEL T":"Model T is a historical car model produced by Ford that underwent significant price deflation due to manufacturing innovations."', '"HENRY FORD":Henry Ford is a significant historical figure, known for his pioneering contributions to the manufacturing industry. In 1910, he introduced mass manufacturing at his Highland Park, Michigan factory, and three years later, in 1913, he unveiled the groundbreaking moving assembly line for the Model T. These innovations led to substantial levels of deflation in the automobile industry, demonstrating Ford\'s transformative impact on the sector. In summary, Henry Ford is associated with the introduction of mass manufacturing and the moving assembly line for the Model T, which brought about dramatic changes and efficiencies in the automotive industry.', '"TESLA":"Tesla is an electric vehicle company that has recently reduced the price of its Model Y, making it competitive with a Toyota RAV4 Hybrid in terms of price."', '"TOYOTA":"Toyota is a car manufacturer that produces the RAV4 Hybrid, which is a competitor to Tesla\'s Model Y in terms of price and features."', '"HIGHLAND PARK, MICHIGAN":"Highland Park, Michigan is a location where Henry Ford introduced mass manufacturing in his factory in 1910."', '"1910":"1910 is the year when Henry Ford introduced mass manufacturing in his Highland Park, Michigan factory."', '"1913":"1913 is the year when Henry Ford introduced his world-changing moving assembly in his factory."', '"MASS MANUFACTURING":"Mass Manufacturing is a concept introduced by Henry Ford in his Highland Park, Michigan factory in 1910, driving dramatic levels of deflation in the automobile industry."', '"MOVING ASSEMBLY":"Moving Assembly is a concept introduced by Henry Ford in his factory in 1913, driving dramatic levels of deflation in the automobile industry."', '"DRASTIC LEVELS OF DEFLATION":"Drastic Levels of Deflation is a concept that refers to the significant reduction in prices in the automobile industry due to innovation in manufacturing."', '"REFINITIV":"Refinitiv is a source of data and information for the stock analysis provided in the text.">)**']}
+15:16:48,171 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"SECULAR GROWTH":"Secular Growth is a concept, referenced as a risk reward theme.">)**', '"ELECTRIC VEHICLES":"Electric Vehicles is a concept, referenced as a risk reward theme.">)**', '"HISTORICAL STOCK PERFORMANCE":', '"CURRENT STOCK PRICE":', '"PRICE TARGET":', '"BULL CASE":', '"BASE CASE":', '"RISK REWARD THEMES":', '"MORGAN STANLEY":Morgan Stanley is a financial services company that produces equity research and provides research, ratings, and investment services to clients. The company is subject to certain terms of use and privacy policies. As an investment bank, it corresponds its ratings to buy, hold, and sell recommendations for regulatory purposes. Morgan Stanley is also an organization that offers research, estimates, and opinions about various companies and sectors. It is the entity that has relationships with and provides services to multiple companies mentioned in the text.', '"DIEGO ORTEGA LAYA":"Diego Ortega Laya is a person who owns securities of Ferrari NV and General Motors Company."', '"FERRARI NV":Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage. As of December 30, 2022, Morgan Stanley beneficially owned 1% or more of a class of common equity securities of Ferrari NV. Additionally, Diego Ortega Laya owns securities of the company. Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"GENERAL MOTORS COMPANY":General Motors Company is an organization that is part of Morgan Stanley\'s research coverage. Morgan Stanley managed or co-managed a public offering of securities for General Motors in the last 12 months and beneficially owned 1% or more of a class of common equity securities as of December 30, 2022. Diego Ortega Laya owns securities in the company. Additionally, General Motors is one of the companies mentioned in the text that potentially receives compensation for products and services other than investment banking services from Morgan Stanley, and has a relationship with an employee, director, or consultant of Morgan Stanley.', '"AMERICAN AXLE & MANUFACTURING HOLDINGS INC":American Axle & Manufacturing Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"APTIV PLC":Aptiv Plc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"AUTONATION INC.":AutoNation Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services.', '"AVIS BUDGET GROUP INC":Avis Budget Group Inc is an organization that is part of Morgan Stanley\'s research coverage. In the past 12 months, Morgan Stanley has managed or co-managed a public offering of securities for Avis Budget Group Inc, and Morgan Stanley expects to receive or intends to seek compensation for investment banking services from the company. This information is based on the text that mentions Avis Budget Group Inc as one of the companies potentially receiving or seeking compensation for investment banking services from Morgan Stanley.']}
+15:16:48,175 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"INVESTMENT BANKING CLIENTS (IBC)":"Investment Banking Clients (IBC) are organizations that have paid investment banking fees to Morgan Stanley in the past 12 months."', '"OTHER MATERIAL INVESTMENT SERVICES CLIENTS (MISC)":"Other Material Investment Services Clients (MISC) are organizations that receive other investment services from Morgan Stanley but have not paid investment banking fees in the past 12 months."', '"OVERWEIGHT":"Overweight is a stock rating assigned by Morgan Stanley, indicating that the stock\'s total return is expected to exceed the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"NOT-RATED":"Not-Rated is a stock rating assigned by Morgan Stanley, indicating that the analyst does not have adequate conviction about the stock\'s total return relative to the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"BUY":', '"HOLD":', '"SELL":', '"RESEARCH ANALYST":"The Research Analyst is a person who contributes to the production of Morgan Stanley Research, with their work typically updated with a certain frequency."', '"RESEARCH MANAGEMENT":"Research Management refers to the individuals who determine the publication schedule for Morgan Stanley Research based on current conditions."', '"SECTION 975 OF THE DODD-FRANK WALL STREET REFORM AND CONSUMER PROTECTION ACT":"Section 975 is a legislative event that defines the meaning of advice within its context."', '"TACTICAL IDEA":"A Tactical Idea is an equity research product from Morgan Stanley that may contain views contrary to recommendations or views expressed in other research on the same stock."', '"MATRIX":"Matrix is a proprietary research portal from Morgan Stanley where clients can access research."', '"SALES REPRESENTATIVE":"A Sales Representative is a person who can assist clients in accessing Morgan Stanley Research and related products."', '"THIRD-PARTY VENDORS":"Third-Party Vendors are organizations that distribute Morgan Stanley Research to clients as a convenience."']}
+15:16:50,339 httpx INFO HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+15:16:50,379 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 1 retries took 0.23399999999674037. input_tokens=628, output_tokens=0
+15:19:49,208 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"MORGAN STANLEY & CO. LLC":"Morgan Stanley & Co. LLC is an organization that has provided an analysis of Tesla Inc\'s price cuts."', '"TESLA INC":Tesla Inc is an electric vehicle company and an organization that is part of Morgan Stanley\'s research coverage. Recently, Tesla Inc reduced its prices across a significant portion of its product range. Morgan Stanley expects to receive or intends to seek compensation for investment banking services for Tesla Inc. The company is also involved in the production of electric vehicles and energy products, and is the primary focus of analysis in the given text.', '"NORTH AMERICA":"North America is the continent where Tesla Inc operates."', '"ADAM JONAS, CFA":"Adam Jonas, CFA is an equity analyst who provided a stock rating, industry view, and price target for Tesla Inc."', '"EVAN SILVERBERG, CFA, CPA":"Evan Silverberg, CFA, CPA is a research associate who contributed to the analysis of Tesla Inc."', '"MODEL T":"Model T is a historical car model produced by Ford that underwent significant price deflation due to manufacturing innovations."', '"HENRY FORD":Henry Ford is a significant historical figure, known for his pioneering contributions to the manufacturing industry. In 1910, he introduced mass manufacturing at his Highland Park, Michigan factory, and three years later, in 1913, he unveiled the groundbreaking moving assembly line for the Model T. These innovations led to substantial levels of deflation in the automobile industry, demonstrating Ford\'s transformative impact on the sector. In summary, Henry Ford is associated with the introduction of mass manufacturing and the moving assembly line for the Model T, which brought about dramatic changes and efficiencies in the automotive industry.', '"TESLA":"Tesla is an electric vehicle company that has recently reduced the price of its Model Y, making it competitive with a Toyota RAV4 Hybrid in terms of price."', '"TOYOTA":"Toyota is a car manufacturer that produces the RAV4 Hybrid, which is a competitor to Tesla\'s Model Y in terms of price and features."', '"HIGHLAND PARK, MICHIGAN":"Highland Park, Michigan is a location where Henry Ford introduced mass manufacturing in his factory in 1910."', '"1910":"1910 is the year when Henry Ford introduced mass manufacturing in his Highland Park, Michigan factory."', '"1913":"1913 is the year when Henry Ford introduced his world-changing moving assembly in his factory."', '"MASS MANUFACTURING":"Mass Manufacturing is a concept introduced by Henry Ford in his Highland Park, Michigan factory in 1910, driving dramatic levels of deflation in the automobile industry."', '"MOVING ASSEMBLY":"Moving Assembly is a concept introduced by Henry Ford in his factory in 1913, driving dramatic levels of deflation in the automobile industry."', '"DRASTIC LEVELS OF DEFLATION":"Drastic Levels of Deflation is a concept that refers to the significant reduction in prices in the automobile industry due to innovation in manufacturing."', '"REFINITIV":"Refinitiv is a source of data and information for the stock analysis provided in the text.">)**']}
+15:19:49,288 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"INVESTMENT BANKING CLIENTS (IBC)":"Investment Banking Clients (IBC) are organizations that have paid investment banking fees to Morgan Stanley in the past 12 months."', '"OTHER MATERIAL INVESTMENT SERVICES CLIENTS (MISC)":"Other Material Investment Services Clients (MISC) are organizations that receive other investment services from Morgan Stanley but have not paid investment banking fees in the past 12 months."', '"OVERWEIGHT":"Overweight is a stock rating assigned by Morgan Stanley, indicating that the stock\'s total return is expected to exceed the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"NOT-RATED":"Not-Rated is a stock rating assigned by Morgan Stanley, indicating that the analyst does not have adequate conviction about the stock\'s total return relative to the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"BUY":', '"HOLD":', '"SELL":', '"RESEARCH ANALYST":"The Research Analyst is a person who contributes to the production of Morgan Stanley Research, with their work typically updated with a certain frequency."', '"RESEARCH MANAGEMENT":"Research Management refers to the individuals who determine the publication schedule for Morgan Stanley Research based on current conditions."', '"SECTION 975 OF THE DODD-FRANK WALL STREET REFORM AND CONSUMER PROTECTION ACT":"Section 975 is a legislative event that defines the meaning of advice within its context."', '"TACTICAL IDEA":"A Tactical Idea is an equity research product from Morgan Stanley that may contain views contrary to recommendations or views expressed in other research on the same stock."', '"MATRIX":"Matrix is a proprietary research portal from Morgan Stanley where clients can access research."', '"SALES REPRESENTATIVE":"A Sales Representative is a person who can assist clients in accessing Morgan Stanley Research and related products."', '"THIRD-PARTY VENDORS":"Third-Party Vendors are organizations that distribute Morgan Stanley Research to clients as a convenience."']}
+15:19:49,686 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"SECULAR GROWTH":"Secular Growth is a concept, referenced as a risk reward theme.">)**', '"ELECTRIC VEHICLES":"Electric Vehicles is a concept, referenced as a risk reward theme.">)**', '"HISTORICAL STOCK PERFORMANCE":', '"CURRENT STOCK PRICE":', '"PRICE TARGET":', '"BULL CASE":', '"BASE CASE":', '"RISK REWARD THEMES":', '"MORGAN STANLEY":Morgan Stanley is a financial services company that produces equity research and provides research, ratings, and investment services to clients. The company is subject to certain terms of use and privacy policies. As an investment bank, it corresponds its ratings to buy, hold, and sell recommendations for regulatory purposes. Morgan Stanley is also an organization that offers research, estimates, and opinions about various companies and sectors. It is the entity that has relationships with and provides services to multiple companies mentioned in the text.', '"DIEGO ORTEGA LAYA":"Diego Ortega Laya is a person who owns securities of Ferrari NV and General Motors Company."', '"FERRARI NV":Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage. As of December 30, 2022, Morgan Stanley beneficially owned 1% or more of a class of common equity securities of Ferrari NV. Additionally, Diego Ortega Laya owns securities of the company. Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"GENERAL MOTORS COMPANY":General Motors Company is an organization that is part of Morgan Stanley\'s research coverage. Morgan Stanley managed or co-managed a public offering of securities for General Motors in the last 12 months and beneficially owned 1% or more of a class of common equity securities as of December 30, 2022. Diego Ortega Laya owns securities in the company. Additionally, General Motors is one of the companies mentioned in the text that potentially receives compensation for products and services other than investment banking services from Morgan Stanley, and has a relationship with an employee, director, or consultant of Morgan Stanley.', '"AMERICAN AXLE & MANUFACTURING HOLDINGS INC":American Axle & Manufacturing Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"APTIV PLC":Aptiv Plc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"AUTONATION INC.":AutoNation Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services.', '"AVIS BUDGET GROUP INC":Avis Budget Group Inc is an organization that is part of Morgan Stanley\'s research coverage. In the past 12 months, Morgan Stanley has managed or co-managed a public offering of securities for Avis Budget Group Inc, and Morgan Stanley expects to receive or intends to seek compensation for investment banking services from the company. This information is based on the text that mentions Avis Budget Group Inc as one of the companies potentially receiving or seeking compensation for investment banking services from Morgan Stanley.']}
+15:19:50,46 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"BORGWARNER INC.":BorgWarner Inc. is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of the entities mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"CARVANA CO":Carvana Co is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. The company is one of the entities mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"FISKER INC":Fisker Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"FORD MOTOR COMPANY":Ford Motor Company is an organization that is part of Morgan Stanley\'s research coverage, for which Morgan Stanley managed or co-managed a public offering of securities in the last 12 months and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. Additionally, Ford Motor Company is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"HERTZ GLOBAL HOLDINGS INC":Hertz Global Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley and having a relationship with an employee, director, or consultant of Morgan Stanley.', '"LEAR CORPORATION":Lear Corporation is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. Additionally, Lear Corporation is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"LI-CYCLE HOLDINGS CORP.":Li-Cycle Holdings Corp. is an organization that is both part of Morgan Stanley\'s research coverage and one of the companies mentioned in the text. Morgan Stanley expects to receive or intends to seek compensation for investment banking services in relation to Li-Cycle Holdings Corp. This information indicates that there is a business relationship between the two entities, with Morgan Stanley providing investment banking services and conducting research on Li-Cycle Holdings Corp.', '"LITHIA MOTORS INC.":Lithia Motors Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text. Lithia Motors Inc. is expected to receive or has sought compensation for investment banking services from Morgan Stanley.', '"MOBILEYE GLOBAL INC":Mobileye Global Inc is an organization that is part of Morgan Stanley\'s research coverage, and it has been involved with Morgan Stanley in a public offering of securities within the last 12 months for which Morgan Stanley managed or co-managed and expects to receive or intends to seek compensation for investment banking services. The company is mentioned multiple times in the text, and it is one of the companies potentially relevant to Morgan Stanley\'s services, possibly receiving or seeking compensation for investment banking services from Morgan Stanley.', '"QUANTUMSCAPE CORP":Quantumscape Corp is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley. This indicates that Quantumscape Corp has a business relationship with Morgan Stanley, where the financial institution provides investment banking services and possibly research coverage, and Quantumscape Corp may receive or seek compensation for these services.', '"ERTZ GLOBAL HOLDINGS INC":"ertz Global Holdings Inc is one of the companies mentioned in the text, potentially relevant to Morgan Stanley\'s services."', '"TESLA INC.":"Tesla Inc. is one of the companies mentioned in the text, potentially relevant to Morgan Stanley\'s services."', '"LUCID GROUP INC":"Lucid Group Inc is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"MAGNA INTERNATIONAL INC.":"Magna International Inc. is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"RIVIAN AUTOMOTIVE, INC.":"Rivian Automotive, Inc. is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley."', '"VISTEON CORPORATION":"Visteon Corporation is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley."']}
+15:19:51,673 httpx INFO HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+15:19:51,714 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 2 retries took 0.4530000000013388. input_tokens=635, output_tokens=0
+15:19:52,509 httpx INFO HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+15:19:52,548 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 2 retries took 0.25. input_tokens=995, output_tokens=0
+15:22:51,813 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"INVESTMENT BANKING CLIENTS (IBC)":"Investment Banking Clients (IBC) are organizations that have paid investment banking fees to Morgan Stanley in the past 12 months."', '"OTHER MATERIAL INVESTMENT SERVICES CLIENTS (MISC)":"Other Material Investment Services Clients (MISC) are organizations that receive other investment services from Morgan Stanley but have not paid investment banking fees in the past 12 months."', '"OVERWEIGHT":"Overweight is a stock rating assigned by Morgan Stanley, indicating that the stock\'s total return is expected to exceed the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"NOT-RATED":"Not-Rated is a stock rating assigned by Morgan Stanley, indicating that the analyst does not have adequate conviction about the stock\'s total return relative to the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"BUY":', '"HOLD":', '"SELL":', '"RESEARCH ANALYST":"The Research Analyst is a person who contributes to the production of Morgan Stanley Research, with their work typically updated with a certain frequency."', '"RESEARCH MANAGEMENT":"Research Management refers to the individuals who determine the publication schedule for Morgan Stanley Research based on current conditions."', '"SECTION 975 OF THE DODD-FRANK WALL STREET REFORM AND CONSUMER PROTECTION ACT":"Section 975 is a legislative event that defines the meaning of advice within its context."', '"TACTICAL IDEA":"A Tactical Idea is an equity research product from Morgan Stanley that may contain views contrary to recommendations or views expressed in other research on the same stock."', '"MATRIX":"Matrix is a proprietary research portal from Morgan Stanley where clients can access research."', '"SALES REPRESENTATIVE":"A Sales Representative is a person who can assist clients in accessing Morgan Stanley Research and related products."', '"THIRD-PARTY VENDORS":"Third-Party Vendors are organizations that distribute Morgan Stanley Research to clients as a convenience."']}
+15:22:51,908 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"SECULAR GROWTH":"Secular Growth is a concept, referenced as a risk reward theme.">)**', '"ELECTRIC VEHICLES":"Electric Vehicles is a concept, referenced as a risk reward theme.">)**', '"HISTORICAL STOCK PERFORMANCE":', '"CURRENT STOCK PRICE":', '"PRICE TARGET":', '"BULL CASE":', '"BASE CASE":', '"RISK REWARD THEMES":', '"MORGAN STANLEY":Morgan Stanley is a financial services company that produces equity research and provides research, ratings, and investment services to clients. The company is subject to certain terms of use and privacy policies. As an investment bank, it corresponds its ratings to buy, hold, and sell recommendations for regulatory purposes. Morgan Stanley is also an organization that offers research, estimates, and opinions about various companies and sectors. It is the entity that has relationships with and provides services to multiple companies mentioned in the text.', '"DIEGO ORTEGA LAYA":"Diego Ortega Laya is a person who owns securities of Ferrari NV and General Motors Company."', '"FERRARI NV":Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage. As of December 30, 2022, Morgan Stanley beneficially owned 1% or more of a class of common equity securities of Ferrari NV. Additionally, Diego Ortega Laya owns securities of the company. Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"GENERAL MOTORS COMPANY":General Motors Company is an organization that is part of Morgan Stanley\'s research coverage. Morgan Stanley managed or co-managed a public offering of securities for General Motors in the last 12 months and beneficially owned 1% or more of a class of common equity securities as of December 30, 2022. Diego Ortega Laya owns securities in the company. Additionally, General Motors is one of the companies mentioned in the text that potentially receives compensation for products and services other than investment banking services from Morgan Stanley, and has a relationship with an employee, director, or consultant of Morgan Stanley.', '"AMERICAN AXLE & MANUFACTURING HOLDINGS INC":American Axle & Manufacturing Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"APTIV PLC":Aptiv Plc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"AUTONATION INC.":AutoNation Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services.', '"AVIS BUDGET GROUP INC":Avis Budget Group Inc is an organization that is part of Morgan Stanley\'s research coverage. In the past 12 months, Morgan Stanley has managed or co-managed a public offering of securities for Avis Budget Group Inc, and Morgan Stanley expects to receive or intends to seek compensation for investment banking services from the company. This information is based on the text that mentions Avis Budget Group Inc as one of the companies potentially receiving or seeking compensation for investment banking services from Morgan Stanley.']}
+15:25:56,419 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"SECULAR GROWTH":"Secular Growth is a concept, referenced as a risk reward theme.">)**', '"ELECTRIC VEHICLES":"Electric Vehicles is a concept, referenced as a risk reward theme.">)**', '"HISTORICAL STOCK PERFORMANCE":', '"CURRENT STOCK PRICE":', '"PRICE TARGET":', '"BULL CASE":', '"BASE CASE":', '"RISK REWARD THEMES":', '"MORGAN STANLEY":Morgan Stanley is a financial services company that produces equity research and provides research, ratings, and investment services to clients. The company is subject to certain terms of use and privacy policies. As an investment bank, it corresponds its ratings to buy, hold, and sell recommendations for regulatory purposes. Morgan Stanley is also an organization that offers research, estimates, and opinions about various companies and sectors. It is the entity that has relationships with and provides services to multiple companies mentioned in the text.', '"DIEGO ORTEGA LAYA":"Diego Ortega Laya is a person who owns securities of Ferrari NV and General Motors Company."', '"FERRARI NV":Ferrari NV is an organization that is part of Morgan Stanley\'s research coverage. As of December 30, 2022, Morgan Stanley beneficially owned 1% or more of a class of common equity securities of Ferrari NV. Additionally, Diego Ortega Laya owns securities of the company. Ferrari NV is one of the companies mentioned in the text, potentially receiving compensation for products and services other than investment banking services from Morgan Stanley.', '"GENERAL MOTORS COMPANY":General Motors Company is an organization that is part of Morgan Stanley\'s research coverage. Morgan Stanley managed or co-managed a public offering of securities for General Motors in the last 12 months and beneficially owned 1% or more of a class of common equity securities as of December 30, 2022. Diego Ortega Laya owns securities in the company. Additionally, General Motors is one of the companies mentioned in the text that potentially receives compensation for products and services other than investment banking services from Morgan Stanley, and has a relationship with an employee, director, or consultant of Morgan Stanley.', '"AMERICAN AXLE & MANUFACTURING HOLDINGS INC":American Axle & Manufacturing Holdings Inc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. This company is one of those mentioned in the text, and it is potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"APTIV PLC":Aptiv Plc is an organization that is part of Morgan Stanley\'s research coverage and for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services. It is one of the companies mentioned in the text, potentially receiving or seeking compensation for investment banking services from Morgan Stanley.', '"AUTONATION INC.":AutoNation Inc. is an organization that is part of Morgan Stanley\'s research coverage and is one of the companies mentioned in the text, for which Morgan Stanley expects to receive or intends to seek compensation for investment banking services.', '"AVIS BUDGET GROUP INC":Avis Budget Group Inc is an organization that is part of Morgan Stanley\'s research coverage. In the past 12 months, Morgan Stanley has managed or co-managed a public offering of securities for Avis Budget Group Inc, and Morgan Stanley expects to receive or intends to seek compensation for investment banking services from the company. This information is based on the text that mentions Avis Budget Group Inc as one of the companies potentially receiving or seeking compensation for investment banking services from Morgan Stanley.']}
+15:25:56,758 graphrag.index.reporting.file_workflow_callbacks INFO Error Invoking LLM details={'input': ['"INVESTMENT BANKING CLIENTS (IBC)":"Investment Banking Clients (IBC) are organizations that have paid investment banking fees to Morgan Stanley in the past 12 months."', '"OTHER MATERIAL INVESTMENT SERVICES CLIENTS (MISC)":"Other Material Investment Services Clients (MISC) are organizations that receive other investment services from Morgan Stanley but have not paid investment banking fees in the past 12 months."', '"OVERWEIGHT":"Overweight is a stock rating assigned by Morgan Stanley, indicating that the stock\'s total return is expected to exceed the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"NOT-RATED":"Not-Rated is a stock rating assigned by Morgan Stanley, indicating that the analyst does not have adequate conviction about the stock\'s total return relative to the average total return of the analyst\'s industry coverage universe on a risk-adjusted basis over the next 12-18 months."', '"BUY":', '"HOLD":', '"SELL":', '"RESEARCH ANALYST":"The Research Analyst is a person who contributes to the production of Morgan Stanley Research, with their work typically updated with a certain frequency."', '"RESEARCH MANAGEMENT":"Research Management refers to the individuals who determine the publication schedule for Morgan Stanley Research based on current conditions."', '"SECTION 975 OF THE DODD-FRANK WALL STREET REFORM AND CONSUMER PROTECTION ACT":"Section 975 is a legislative event that defines the meaning of advice within its context."', '"TACTICAL IDEA":"A Tactical Idea is an equity research product from Morgan Stanley that may contain views contrary to recommendations or views expressed in other research on the same stock."', '"MATRIX":"Matrix is a proprietary research portal from Morgan Stanley where clients can access research."', '"SALES REPRESENTATIVE":"A Sales Representative is a person who can assist clients in accessing Morgan Stanley Research and related products."', '"THIRD-PARTY VENDORS":"Third-Party Vendors are organizations that distribute Morgan Stanley Research to clients as a convenience."']}
+15:26:05,125 httpx INFO HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+15:26:05,163 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 4 retries took 0.48399999999674037. input_tokens=727, output_tokens=0
+15:26:05,633 httpx INFO HTTP Request: POST http://localhost:1234/v1/embeddings "HTTP/1.1 200 OK"
+15:26:05,667 graphrag.llm.base.rate_limiting_llm INFO perf - llm.embedding "Process" with 4 retries took 0.20299999999406282. input_tokens=408, output_tokens=0
+15:26:05,687 datashaper.workflow.workflow INFO executing verb drop
+15:26:05,697 datashaper.workflow.workflow INFO executing verb filter
+15:26:05,709 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_entities.parquet
+15:26:05,867 graphrag.index.run INFO Running workflow: create_final_nodes...
+15:26:05,867 graphrag.index.run INFO dependencies for create_final_nodes: ['create_base_entity_graph']
+15:26:05,867 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+15:26:05,881 datashaper.workflow.workflow INFO executing verb layout_graph
+15:26:05,914 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:26:05,927 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:26:05,942 datashaper.workflow.workflow INFO executing verb drop
+15:26:05,949 datashaper.workflow.workflow INFO executing verb filter
+15:26:05,971 datashaper.workflow.workflow INFO executing verb select
+15:26:05,981 datashaper.workflow.workflow INFO executing verb rename
+15:26:05,991 datashaper.workflow.workflow INFO executing verb join
+15:26:06,12 datashaper.workflow.workflow INFO executing verb convert
+15:26:06,42 datashaper.workflow.workflow INFO executing verb rename
+15:26:06,48 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_nodes.parquet
+15:26:06,182 graphrag.index.run INFO Running workflow: create_final_communities...
+15:26:06,182 graphrag.index.run INFO dependencies for create_final_communities: ['create_base_entity_graph']
+15:26:06,182 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+15:26:06,202 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:26:06,220 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:26:06,235 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:26:06,251 datashaper.workflow.workflow INFO executing verb join
+15:26:06,270 datashaper.workflow.workflow INFO executing verb join
+15:26:06,283 datashaper.workflow.workflow INFO executing verb concat
+15:26:06,295 datashaper.workflow.workflow INFO executing verb filter
+15:26:06,327 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:26:06,341 datashaper.workflow.workflow INFO executing verb join
+15:26:06,356 datashaper.workflow.workflow INFO executing verb filter
+15:26:06,394 datashaper.workflow.workflow INFO executing verb fill
+15:26:06,403 datashaper.workflow.workflow INFO executing verb merge
+15:26:06,417 datashaper.workflow.workflow INFO executing verb copy
+15:26:06,429 datashaper.workflow.workflow INFO executing verb select
+15:26:06,433 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_communities.parquet
+15:26:06,567 graphrag.index.run INFO Running workflow: join_text_units_to_entity_ids...
+15:26:06,567 graphrag.index.run INFO dependencies for join_text_units_to_entity_ids: ['create_final_entities']
+15:26:06,567 graphrag.index.run INFO read table from storage: create_final_entities.parquet
+15:26:06,610 datashaper.workflow.workflow INFO executing verb select
+15:26:06,621 datashaper.workflow.workflow INFO executing verb unroll
+15:26:06,637 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:26:06,639 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table join_text_units_to_entity_ids.parquet
+15:26:06,772 graphrag.index.run INFO Running workflow: create_final_relationships...
+15:26:06,772 graphrag.index.run INFO dependencies for create_final_relationships: ['create_final_nodes', 'create_base_entity_graph']
+15:26:06,772 graphrag.index.run INFO read table from storage: create_final_nodes.parquet
+15:26:06,793 graphrag.index.run INFO read table from storage: create_base_entity_graph.parquet
+15:26:06,819 datashaper.workflow.workflow INFO executing verb unpack_graph
+15:26:06,839 datashaper.workflow.workflow INFO executing verb filter
+15:26:06,867 datashaper.workflow.workflow INFO executing verb rename
+15:26:06,880 datashaper.workflow.workflow INFO executing verb filter
+15:26:06,916 datashaper.workflow.workflow INFO executing verb drop
+15:26:06,927 datashaper.workflow.workflow INFO executing verb compute_edge_combined_degree
+15:26:06,950 datashaper.workflow.workflow INFO executing verb convert
+15:26:06,978 datashaper.workflow.workflow INFO executing verb convert
+15:26:06,983 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_relationships.parquet
+15:26:07,126 graphrag.index.run INFO Running workflow: join_text_units_to_relationship_ids...
+15:26:07,126 graphrag.index.run INFO dependencies for join_text_units_to_relationship_ids: ['create_final_relationships']
+15:26:07,126 graphrag.index.run INFO read table from storage: create_final_relationships.parquet
+15:26:07,177 datashaper.workflow.workflow INFO executing verb select
+15:26:07,192 datashaper.workflow.workflow INFO executing verb unroll
+15:26:07,209 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:26:07,226 datashaper.workflow.workflow INFO executing verb select
+15:26:07,229 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table join_text_units_to_relationship_ids.parquet
+15:26:07,362 graphrag.index.run INFO Running workflow: create_final_community_reports...
+15:26:07,362 graphrag.index.run INFO dependencies for create_final_community_reports: ['create_final_relationships', 'create_final_nodes']
+15:26:07,362 graphrag.index.run INFO read table from storage: create_final_relationships.parquet
+15:26:07,367 graphrag.index.run INFO read table from storage: create_final_nodes.parquet
+15:26:07,419 datashaper.workflow.workflow INFO executing verb prepare_community_reports_nodes
+15:26:07,437 datashaper.workflow.workflow INFO executing verb prepare_community_reports_edges
+15:26:07,455 datashaper.workflow.workflow INFO executing verb restore_community_hierarchy
+15:26:07,475 datashaper.workflow.workflow INFO executing verb prepare_community_reports
+15:26:07,478 graphrag.index.verbs.graph.report.prepare_community_reports INFO Number of nodes at level=1 => 78
+15:26:07,497 graphrag.index.verbs.graph.report.prepare_community_reports INFO Number of nodes at level=0 => 78
+15:26:07,529 datashaper.workflow.workflow INFO executing verb create_community_reports
+15:26:09,112 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:26:09,112 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 1.5780000000013388. input_tokens=2572, output_tokens=439
+15:26:55,472 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:27:05,3 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 1.4220000000059372. input_tokens=2246, output_tokens=476
+15:27:47,946 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:27:55,267 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 1.2810000000026776. input_tokens=2083, output_tokens=366
+15:28:39,222 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:28:48,152 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 1.3130000000019209. input_tokens=2131, output_tokens=446
+15:28:48,173 graphrag.index.graph.extractors.community_reports.community_reports_extractor ERROR error generating community report
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\community_reports\community_reports_extractor.py", line 58, in __call__
+    await self._llm(
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+15:28:48,173 graphrag.index.reporting.file_workflow_callbacks INFO Community Report Extraction Error details=None
+15:28:48,173 graphrag.index.verbs.graph.report.strategies.graph_intelligence.run_graph_intelligence WARNING No report found for community: 0
+15:28:48,178 graphrag.index.graph.extractors.community_reports.community_reports_extractor ERROR error generating community report
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\community_reports\community_reports_extractor.py", line 58, in __call__
+    await self._llm(
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+15:28:48,178 graphrag.index.reporting.file_workflow_callbacks INFO Community Report Extraction Error details=None
+15:28:48,178 graphrag.index.verbs.graph.report.strategies.graph_intelligence.run_graph_intelligence WARNING No report found for community: 1
+15:29:39,136 httpx INFO HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+15:29:50,471 graphrag.llm.base.rate_limiting_llm INFO perf - llm.chat "create_community_report" with 0 retries took 1.6880000000019209. input_tokens=2464, output_tokens=566
+15:29:50,503 datashaper.workflow.workflow INFO executing verb window
+15:29:50,507 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_community_reports.parquet
+15:29:50,681 graphrag.index.run INFO Running workflow: create_final_text_units...
+15:29:50,681 graphrag.index.run INFO dependencies for create_final_text_units: ['create_base_text_units', 'join_text_units_to_relationship_ids', 'join_text_units_to_entity_ids']
+15:29:50,681 graphrag.index.run INFO read table from storage: create_base_text_units.parquet
+15:29:50,686 graphrag.index.run INFO read table from storage: join_text_units_to_relationship_ids.parquet
+15:29:50,696 graphrag.index.run INFO read table from storage: join_text_units_to_entity_ids.parquet
+15:29:50,743 datashaper.workflow.workflow INFO executing verb select
+15:29:50,762 datashaper.workflow.workflow INFO executing verb rename
+15:29:50,780 datashaper.workflow.workflow INFO executing verb join
+15:29:50,802 datashaper.workflow.workflow INFO executing verb join
+15:29:50,821 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:29:50,841 datashaper.workflow.workflow INFO executing verb select
+15:29:50,847 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_text_units.parquet
+15:29:50,994 graphrag.index.run INFO Running workflow: create_base_documents...
+15:29:50,994 graphrag.index.run INFO dependencies for create_base_documents: ['create_final_text_units']
+15:29:50,994 graphrag.index.run INFO read table from storage: create_final_text_units.parquet
+15:29:51,42 datashaper.workflow.workflow INFO executing verb unroll
+15:29:51,61 datashaper.workflow.workflow INFO executing verb select
+15:29:51,76 datashaper.workflow.workflow INFO executing verb rename
+15:29:51,96 datashaper.workflow.workflow INFO executing verb join
+15:29:51,121 datashaper.workflow.workflow INFO executing verb aggregate_override
+15:29:51,141 datashaper.workflow.workflow INFO executing verb join
+15:29:51,165 datashaper.workflow.workflow INFO executing verb rename
+15:29:51,183 datashaper.workflow.workflow INFO executing verb convert
+15:29:51,204 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_documents.parquet
+15:29:51,351 graphrag.index.run INFO Running workflow: create_final_documents...
+15:29:51,351 graphrag.index.run INFO dependencies for create_final_documents: ['create_base_documents']
+15:29:51,351 graphrag.index.run INFO read table from storage: create_base_documents.parquet
+15:29:51,407 datashaper.workflow.workflow INFO executing verb rename
+15:29:51,411 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_final_documents.parquet

@@ -1,0 +1,867 @@
+14:11:11,837 graphrag.config.read_dotenv INFO Loading pipeline .env file
+14:11:11,837 graphrag.index.cli INFO using default configuration: {
+    "llm": {
+        "api_key": "REDACTED, length 56",
+        "type": "openai_chat",
+        "model": "mixtral-8x7b-32768",
+        "max_tokens": 3000,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "request_timeout": 180.0,
+        "api_base": "https://api.groq.com/openai/v1",
+        "api_version": null,
+        "proxy": null,
+        "cognitive_services_endpoint": null,
+        "deployment_name": null,
+        "model_supports_json": true,
+        "tokens_per_minute": 3000,
+        "requests_per_minute": 10,
+        "max_retries": 3,
+        "max_retry_wait": 10.0,
+        "sleep_on_rate_limit_recommendation": true,
+        "concurrent_requests": 25
+    },
+    "parallelization": {
+        "stagger": 0.3,
+        "num_threads": 50
+    },
+    "async_mode": "threaded",
+    "root_dir": ".",
+    "reporting": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/reports",
+        "storage_account_blob_url": null
+    },
+    "storage": {
+        "type": "file",
+        "base_dir": "output/${timestamp}/artifacts",
+        "storage_account_blob_url": null
+    },
+    "cache": {
+        "type": "file",
+        "base_dir": "cache",
+        "storage_account_blob_url": null
+    },
+    "input": {
+        "type": "file",
+        "file_type": "text",
+        "base_dir": "input",
+        "storage_account_blob_url": null,
+        "encoding": "utf-8",
+        "file_pattern": ".*\\.txt$",
+        "file_filter": null,
+        "source_column": null,
+        "timestamp_column": null,
+        "timestamp_format": null,
+        "text_column": "text",
+        "title_column": null,
+        "document_attribute_columns": []
+    },
+    "embed_graph": {
+        "enabled": false,
+        "num_walks": 10,
+        "walk_length": 40,
+        "window_size": 2,
+        "iterations": 3,
+        "random_seed": 597832,
+        "strategy": null
+    },
+    "embeddings": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_embedding",
+            "model": "text-embedding-3-smallnomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_0.gguf",
+            "max_tokens": 4000,
+            "temperature": 0,
+            "top_p": 1,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "http://localhost:1234/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": null,
+            "tokens_per_minute": 0,
+            "requests_per_minute": 0,
+            "max_retries": 10,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "batch_size": 16,
+        "batch_max_tokens": 8191,
+        "target": "required",
+        "skip": [],
+        "vector_store": null,
+        "strategy": null
+    },
+    "chunks": {
+        "size": 1200,
+        "overlap": 100,
+        "group_by_columns": [
+            "id"
+        ],
+        "strategy": null
+    },
+    "snapshots": {
+        "graphml": false,
+        "raw_entities": false,
+        "top_level_nodes": false
+    },
+    "entity_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 3,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/entity_extraction.txt",
+        "entity_types": [
+            "organization",
+            "person",
+            "geo",
+            "event"
+        ],
+        "max_gleanings": 1,
+        "strategy": null
+    },
+    "summarize_descriptions": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 3,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/summarize_descriptions.txt",
+        "max_length": 500,
+        "strategy": null
+    },
+    "community_reports": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 3,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "prompt": "prompts/community_report.txt",
+        "max_length": 2000,
+        "max_input_length": 8000,
+        "strategy": null
+    },
+    "claim_extraction": {
+        "llm": {
+            "api_key": "REDACTED, length 56",
+            "type": "openai_chat",
+            "model": "mixtral-8x7b-32768",
+            "max_tokens": 3000,
+            "temperature": 0.0,
+            "top_p": 1.0,
+            "n": 1,
+            "request_timeout": 180.0,
+            "api_base": "https://api.groq.com/openai/v1",
+            "api_version": null,
+            "proxy": null,
+            "cognitive_services_endpoint": null,
+            "deployment_name": null,
+            "model_supports_json": true,
+            "tokens_per_minute": 3000,
+            "requests_per_minute": 10,
+            "max_retries": 3,
+            "max_retry_wait": 10.0,
+            "sleep_on_rate_limit_recommendation": true,
+            "concurrent_requests": 25
+        },
+        "parallelization": {
+            "stagger": 0.3,
+            "num_threads": 50
+        },
+        "async_mode": "threaded",
+        "enabled": false,
+        "prompt": "prompts/claim_extraction.txt",
+        "description": "Any claims or facts that could be relevant to information discovery.",
+        "max_gleanings": 1,
+        "strategy": null
+    },
+    "cluster_graph": {
+        "max_cluster_size": 10,
+        "strategy": null
+    },
+    "umap": {
+        "enabled": false
+    },
+    "local_search": {
+        "text_unit_prop": 0.5,
+        "community_prop": 0.1,
+        "conversation_history_max_turns": 5,
+        "top_k_entities": 10,
+        "top_k_relationships": 10,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "max_tokens": 12000,
+        "llm_max_tokens": 2000
+    },
+    "global_search": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "n": 1,
+        "max_tokens": 12000,
+        "data_max_tokens": 12000,
+        "map_max_tokens": 1000,
+        "reduce_max_tokens": 2000,
+        "concurrency": 32
+    },
+    "encoding_model": "cl100k_base",
+    "skip_workflows": []
+}
+14:11:11,837 graphrag.index.create_pipeline_config INFO skipping workflows 
+14:11:11,837 graphrag.index.run INFO Running pipeline
+14:11:11,837 graphrag.index.storage.file_pipeline_storage INFO Creating file storage at output\20240801-141111\artifacts
+14:11:11,852 graphrag.index.input.load_input INFO loading input from root_dir=input
+14:11:11,852 graphrag.index.input.load_input INFO using file storage for input
+14:11:11,854 graphrag.index.storage.file_pipeline_storage INFO search input for files matching .*\.txt$
+14:11:11,854 graphrag.index.input.text INFO found text files from input, found [('Apple.txt', {})]
+14:11:11,854 graphrag.index.input.text INFO Found 1 files, loading 1
+14:11:11,854 graphrag.index.workflows.load INFO Workflow Run Order: ['create_base_text_units', 'create_base_extracted_entities', 'create_summarized_entities', 'create_base_entity_graph', 'create_final_entities', 'create_final_nodes', 'create_final_communities', 'join_text_units_to_entity_ids', 'create_final_relationships', 'join_text_units_to_relationship_ids', 'create_final_community_reports', 'create_final_text_units', 'create_base_documents', 'create_final_documents']
+14:11:11,854 graphrag.index.run INFO Final # of rows loaded: 1
+14:11:12,35 graphrag.index.run INFO Running workflow: create_base_text_units...
+14:11:12,35 graphrag.index.run INFO dependencies for create_base_text_units: []
+14:11:12,51 datashaper.workflow.workflow INFO executing verb orderby
+14:11:12,51 datashaper.workflow.workflow INFO executing verb zip
+14:11:12,51 datashaper.workflow.workflow INFO executing verb aggregate_override
+14:11:12,51 datashaper.workflow.workflow INFO executing verb chunk
+14:11:12,186 datashaper.workflow.workflow INFO executing verb select
+14:11:12,201 datashaper.workflow.workflow INFO executing verb unroll
+14:11:12,201 datashaper.workflow.workflow INFO executing verb rename
+14:11:12,201 datashaper.workflow.workflow INFO executing verb genid
+14:11:12,201 datashaper.workflow.workflow INFO executing verb unzip
+14:11:12,217 datashaper.workflow.workflow INFO executing verb copy
+14:11:12,220 datashaper.workflow.workflow INFO executing verb filter
+14:11:12,230 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_text_units.parquet
+14:11:12,340 graphrag.index.run INFO Running workflow: create_base_extracted_entities...
+14:11:12,340 graphrag.index.run INFO dependencies for create_base_extracted_entities: ['create_base_text_units']
+14:11:12,340 graphrag.index.run INFO read table from storage: create_base_text_units.parquet
+14:11:12,371 datashaper.workflow.workflow INFO executing verb entity_extract
+14:11:12,371 graphrag.llm.openai.create_openai_client INFO Creating OpenAI client base_url=https://api.groq.com/openai/v1
+14:11:12,527 graphrag.index.llm.load_llm INFO create TPM/RPM limiter for mixtral-8x7b-32768: TPM=3000, RPM=10
+14:11:12,527 graphrag.index.llm.load_llm INFO create concurrency limiter for mixtral-8x7b-32768: 25
+14:11:12,529 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,529 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': 'February 6, 2023 12:45 AM GMT\nMORGAN STANLEY & CO. LLC\n\nApple, Inc. | North America\n\nErik W Woodring\n\n10-Q Analysis: B/S Inventory\nSpikes Q/Q While App Store\n(and Music) Return as Services\nDrivers\nStock Rating\n\nOverweight\n\nIndustry View\n\nIn-Line\n\nPrice Target\n\n$175.00\n\nApple\'s B/S inv increased Q/Q at the strongest rate in a\ndecade, reflecting the late Dec iPhone 14 Pro/Pro Max ramp\nand strategic component pre-purchases. Separately, the App\nStore returned as a top 2 Services driver, while Music was a\ntop 3 Services driver for the first time in 6+ years.\nBalance sheet inventory spike reflects late December production ramp and\nstrategic component purchases. While Apple\'s vendor non-trade receivables (an\nindication of inventory sitting at contract manufacturers) balance fell 7% Q/Q in\nthe December quarter, B/S inventory spiked 38% sequentially, the strongest Q/Q\nB/S inventory growth in the December quarter in a decade (Exhibit 1). We believe\nthis reflects two dynamics. First, given the late December ramp of iPhone 14\nPro/Pro Max production in Zhengzhou, China, we believe Apple was likely holding\nan elevated level of finished goods inventory ending the quarter, which we\'d\nexpect to get worked down in the March quarter. Second, and perhaps more\nimportantly, we believe Apple was in the market in the December quarter\nstrategically pre-purchasing commonly used components (i.e. more commoditized\nsupplies like NAND/DRAM) at favorable prices. In response to a question about\nApple\'s 43.5-44.5% gross margin guidance on the Dec Q earnings call, CFO Luca\nMaestri noted "we need to find offsets and more to the negative FX in order to\nbe able to provide this kind of guidance. And so, obviously, components are a big\npart of that". With NAND and DRAM prices down ~25% over the last 8 months\nand ~50% over the last year, we believe commodity costs can remain a\nmeaningful gross margin tailwind for Apple into F2H23 and likely FY24.\nStructurally lower D&A remains gross margins tailwind. D&A as a percentage of\nApple\'s revenue continues to trend lower than historical levels, which we believe\nis a sustainable tailwind to gross margins (barring a notable ramp in capex or\nlarge acquisition). In the December Q, Apple\'s D&A expense of $2.9B was just\n2.5% of revenue, down from a historical average of 3.3% (2013-2021; Exhibit 2),\nwhich we estimate equates to a 10bps Y/Y tailwind to gross margins this quarter\n(Exhibit 3). While this is down from an average 110bps Y/Y tailwind to gross\nmargins in FY22, we expect the gross margin tailwind from lower D&A to lessen\n\nEQUITY ANALYST\nErik.Woodring@morganstanley.com\n\n+1 212 296-8083\n\nSabrina E Hao\nRESEARCH ASSOCIATE\nSabrina.Hao@morganstanley.com\n\n+1 212 761-3793\n\nMaya C Neuman\nRESEARCH ASSOCIATE\nMaya.Neuman@morganstanley.com\n\n+1 212 761-1946\n\nApple, Inc. ( AAPL.O, AAPL US ) Top Pick\nIT Hardware / United States of America\nStock Rating\nIndustry View\nPrice target\nShr price, close (Feb 3, 2023)\nMkt cap, curr (mm)\n52-Week Range\n\nOverweight\nIn-Line\n$175.00\n$154.50\n$2,457,354\n$179.61-124.17\n\nFiscal Year Ending\n\n09/22 09/23e 09/24e 09/25e\n\nModelWare EPS ($)\nPrior ModelWare EPS\n($)\nP/E\nEPS ($)§\nDiv yld (%)\n\n6.11\n-\n\n6.02\n-\n\n6.85\n-\n\n7.35\n-\n\n22.6\n6.09\n0.7\n\n25.7\n6.14\n0.6\n\n22.6\n6.68\n0.7\n\n21.0\n7.14\n0.7\n\nUnless otherwise noted, all metrics are based on Morgan Stanley ModelWare\nframework\n§ = Consensus data is provided by Refinitiv Estimates\ne = Morgan Stanley Research estimates\n\nQUARTERLY MODELWARE EPS ($)\n2023e\n2023e\nQuarter\n2022\nPrior Current\nQ1\n2.10\n1.88a\nQ2\n1.52\n1.40\nQ3\n1.20\n1.21\nQ4\n1.29\n1.52\n\n2024e\nPrior\n-\n\n2024e\nCurrent\n2.31\n1.58\n1.36\n1.59\n\ne = Morgan Stanley Research estimates, a = Actual Company reported data\n\nMorgan Stanley does and seeks to do business with\ncompanies covered in Morgan Stanley Research. As a\nresult, investors should be aware that the firm may have a\nconflict of interest that could affect the objectivity of\nMorgan Stanley Research. Investors should consider\nMorgan Stanley Research as only a single factor in making\ntheir investment decision.\nFor analyst certification and other important disclosures,\nrefer to the Disclosure Section, located at the end of this\nreport.\n\n1\n\n\x0cas Apple reaches a more "steady-state" level of'}
+14:11:12,543 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,543 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': 'business with\ncompanies covered in Morgan Stanley Research. As a\nresult, investors should be aware that the firm may have a\nconflict of interest that could affect the objectivity of\nMorgan Stanley Research. Investors should consider\nMorgan Stanley Research as only a single factor in making\ntheir investment decision.\nFor analyst certification and other important disclosures,\nrefer to the Disclosure Section, located at the end of this\nreport.\n\n1\n\n\x0cas Apple reaches a more "steady-state" level of D&A expense, Importantly, this\nmakes Apple\'s December quarter gross margin performance (43%) and March\nquarter gross margin guidance (43.5-44.5%) more impressive in the face of\nsignificant FX headwinds (300 bps Y/Y in the Dec Q, 270 bps Y/Y in the March Q),\na result of 1) positive segment mix shift, 2) strong iPhone pricing (up 8% Y/Y in the\nDec Q), 3) commodity cost tailwinds and supplier price re-negotiations, 4) logistics\nbecoming a Y/Y tailwind (although prices are still "significantly" above pre-COVID\nlevels), and 5) Apple\'s continued efforts to in-source key technology such as\nprocessors, sensors, displays, batteries, and cameras. To this last point, Apple\'s\nR&D expense in the Dec Q reached a near-record of 6.6% of revenue vs. the 3.9%\nhistorical Dec Q average (Exhibit 4) – while this was driven by R&D expense\ncoming in ~$400M more than we had forecasted, we believe this was also a\nresult of Apple\'s depressed Dec Q revenue base.\n\nApp Store a top 2 Services revenue driver once again, and Music a top 3 Services\ndriver for the first time. Apple\'s 10-Q highlights that the three largest drivers of\nServices net sales growth in the Dec Q were: 1) cloud services, 2) the App Store,\nand 3) music. Importantly, these disclosures confirm that the App Store did\nreturn to growth in the quarter after 2 quarters of flat Y/Y App Store\nperformance. We estimate App Store net revenue grew 7% Y/Y in the December\nquarter, largely a function of Apple\'s 14 week quarter, as the App Store would\nhave declined 1% Y/Y (MSe) if not for the 14th week. We estimate that in January,\nthe App Store continued its streak of net revenue growth (growing ~1% Y/Y)\nafter 5 consecutive months of declines last summer/fall (Exhibit 5). Additionally,\nApple Music\'s inclusion as a top 3 Services driver is notable as the service hasn\'t\nbeen a top 3 Services driver in 6+ years, which we believe partially reflects the\nearly impact of the ~10% average price increase put into effect in late October.\n\n2\n\n\x0cExhibits\nExhibit 1: Apple\'s B/S inventory was up 16% Y/Y and 38% Q/Q in the Dec Q.\nBalance Sheet Inventory ($B)\n\nY/Y Growth (RHS)\n\n$8\n\n90%\n\n$7\n$6\n5.0\n\n$5\n$4\n\n4.9\n\n4.0 13%\n3.4\n\n4.1 4.1\n4%\n3.3\n\n$3\n\n6.8\n\n-36%\n-43%\n\n70%\n\n5.9\n\n50%\n\n5.5 5.4\n4.9\n18%\n\n30%\n16%\n\n5% 5%\n\n-1%\n\n10%\n-10%\n\n-18%\n-32%\n\n-19%\n\n$2\n\n57%\n5.2\n5.0 5.2\n30%\n4.0 4.1 21%\n19%\n\n6.6\n62%\n\n-25%\n\n-30%\n\nDec-22\n\nSep-22\n\nJun-22\n\nMar-22\n\nDec-21\n\nSep-21\n\nJun-21\n\nMar-21\n\nDec-20\n\nSep-20\n\nJun-20\n\nMar-20\n\nDec-19\n\nSep-19\n\nJun-19\n\n-70%\nMar-19\n\n$0\nDec-18\n\n-50%\nSep-18\n\n$1\n\nSource: Company Data, Morgan Stanley Research\n\nExhibit 2: In the Dec Q, Apple\'s D&A was 2.5% of revenue, down from an average of 3.3%\nhistorically.\n\nApple Depreciation & Amortization as % of Revenue\nD&A as % Revenue\n\nHistorical Average (2013-2021)\n\n4.5%\n4.0%\n\n3.7%\n\n3.5%\n\n3.9%\n\n4.0%\n\n3.8%\n\n3.5%\n3.1%\n\n3.1%\n\n3.0%\n\n2.4%\n\n2.5%\n\n2.5%\n2.2%\n\n2.0%\n1.5%\n1.0%\n0.5%\n0.0%\nDec-13\n\nDec-14\n\nDec-15\n\nDec-16\n\nDec-17\n\nDec-18\n\nDec-19\n\nDec-20\n\nDec-21\n\nDec-22\n\nSource: Company Data, Morgan Stanley Research\n\n3\n\n\x0cExhibit 3: We estimate the lower run-rate of D&A as a % of revenue vs. the historical 3 year average\nresulted in a 10bps Y/Y tailwind to Dec Q gross margins.\n\nApple Gross Margin Impact from D&A\nReported Gross Margin (excluding D&A benefit)\n45.0%\n\n42.5%\n40.0%\n\n39.8%\n\n1.7%\n\n43.3%\n1.5%\n\n42.2%\n\nBenefit'}
+14:11:12,543 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,543 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': "3\n\n\x0cExhibit 3: We estimate the lower run-rate of D&A as a % of revenue vs. the historical 3 year average\nresulted in a 10bps Y/Y tailwind to Dec Q gross margins.\n\nApple Gross Margin Impact from D&A\nReported Gross Margin (excluding D&A benefit)\n45.0%\n\n42.5%\n40.0%\n\n39.8%\n\n1.7%\n\n43.3%\n1.5%\n\n42.2%\n\nBenefit from Lower D&A\n\n43.8%\n\n43.7%\n\n43.3%\n\n1.0%\n\n1.6%\n\n1.1%\n\n0.9%\n\n42.3%\n\n43.0%\n0.1%\n\n1.1%\n\n1.0%\n\n35.0%\n\n30.0%\n\n25.0%\nDec-20\n\nMar-21\n\nJun-21\n\nSep-21\n\nDec-21\n\nMar-22\n\nJun-22\n\nSep-22\n\nDec-22\n\nSource: Company Data, Morgan Stanley Research\n\nExhibit 4: R&D as a % of revenue rose to 6.6% of revenue in the Dec Q, showing the impact of 1)\nApple accelerating in-house technology development and 2) a depressed December quarter\nrevenue base.\n\nApple R&D as % of Revenue\nR&D as % of Revenue\n\nHistorical Average (2013-2021)\n\n6.6%\n\n7.0%\n6.0%\n\n4.6%\n\n5.0%\n4.0%\n\n3.7%\n\n3.9%\n\nDec-16\n\nDec-17\n\n4.8%\n\n5.1%\n4.6%\n\n3.2%\n3.0%\n\n2.3%\n\n2.5%\n\n2.0%\n1.0%\n0.0%\nDec-13\n\nDec-14\n\nDec-15\n\nDec-18\n\nDec-19\n\nDec-20\n\nDec-21\n\nDec-22\n\nSource: Company Data, Morgan Stanley Research\n\n4\n\n\x0cExhibit 5: App Store net revenue returned to Y/Y growth in December 2022 and January 2023 after\n5 consecutive months of Y/Y declines.\nApp Store Monthly Net Revenue & Growth\nApp Store Net Revenue ($B)\n$2.3\n15%\n12%\n2.1\n$2.1\n\nY/Y Growth (RHS)\n2.3\n\n2.2\n\n16%\n\n2.2 2.2\n2.1 2.1\n12% 12%\n12%\n2.1\n2.1\n13%\n\n2.2 2.2 2.2\n\n2.2 2.1\n2.1\n\n15%\n2.1\n\n2.0\n\n2.1\n\n2.0\n10%\n\n8%\n6%\n4%\n\n$1.9\n\n20%\n\n2.2\n\n2.2\n\n5% 6%\n2%\n\n5%\n1%\n\n-1%\n\n-2%\n\n-2%\n\n-1%\n\n1% 0.4%\n0%\n\n-4%\n\n$1.7\n\nJan-23\n\nDec-22\n\nNov-22\n\nOct-22\n\nSep-22\n\nJul-22\n\nAug-22\n\nJun-22\n\nApr-22\n\nMay-22\n\nMar-22\n\nFeb-22\n\nJan-22\n\nDec-21\n\nNov-21\n\nOct-21\n\nSep-21\n\nAug-21\n\nJul-21\n\nJun-21\n\n$1.5\n\nMay-21\n\n-5%\n-10%\n\nSource: Sensor Tower, Morgan Stanley Research\n\n5\n\n\x0cH\n\nRisk Reward – Apple, Inc. (AAPL.O)\n\nTop Pick\n\nStability and Strength of Ecosystem Underappreciated by Investors\nPRICE TARGET $175.00\n\nOVERWEIGHT THESIS\n\nOur $175 PT is sum-of-the-parts driven. We apply a 6.3x EV/Sales multiple on Apple's Product\nbusiness (iPhone, iPad, Mac, and Wearables) and a 6.7x EV/Sales multiple on Apple's Services\nbusiness, in-line with their respective peer groups. We also assign ~$160B of EV to Apple's\nFuture Products (AR/VR, Autos, etc.), which is driven by $21.5B of revenue and an 7.5x target\nEV/Sales multiple. This implies a 25.5x target P/E on FY24 EPS of $6.85.\n\nApple has the world's most valuable\ntechnology platform with 2.0B active\ndevices. While Apple is exposed to a\npotential slowing of consumer demand, we\nbelieve it is better positioned vs. other\nconsumer hardware names with its sticky\nuser base & history of investment through\ncycles. Tailwinds to drive a re-rating over the\nnext year include 1) new product launches\n(including rumored AR/VR launch), 2) PC\nmarket share gains on the back of M1 Macs,\n3) increasing monetization of high margin\nservices, and 4) strong cash returns. Longerterm investments in augmented reality,\npayments, health, autos and home can help\nsustain growth as Apple captures more of\nits users' time and wallet share.\n\n$170.88\n\nConsensus Price Target Distribution\n\n$122.00\n\n$214.00\n\nMS PT\n\nSource: Refinitiv, Morgan Stanley Research\n\nMean\n\nMorgan Stanley Estimates\n\nRISK REWARD CHART AND OPTIONS IMPLIED PROBABILITIES (12M)\nUSD\n\n320\n\n$230.00(+48.87%)\n$230.00\n(+48.87%)\n(+48.87%)\n\nProb (>230.00)~4.9%\n\nConsensus Rating Distribution\n\n240\n\n$175.00(+13.27%)\n$175.00"}
+14:11:12,543 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,543 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': "00\n\nMS PT\n\nSource: Refinitiv, Morgan Stanley Research\n\nMean\n\nMorgan Stanley Estimates\n\nRISK REWARD CHART AND OPTIONS IMPLIED PROBABILITIES (12M)\nUSD\n\n320\n\n$230.00(+48.87%)\n$230.00\n(+48.87%)\n(+48.87%)\n\nProb (>230.00)~4.9%\n\nConsensus Rating Distribution\n\n240\n\n$175.00(+13.27%)\n$175.00\n(+13.27%)\n(+13.27%)\n160\n\n$154.50\n\n80% Overweight\n18% Equal-weight\n3% Underweight\n\nProb (>175.00)~38.7%\n\nMS Rating\nSource: Refinitiv, Morgan Stanley Research\n\n80\n\n$105.00(-32.04%)\n$105.00\n(-32.04%)\n(-32.04%)\n\nProb (<105.00)~9.8%\n\nRisk Reward Themes\n0\nFEB '22\n\nKey:\n\nAUG '22\n\nFEB '23\n\nHistorical Stock Performance\n\nCurrent Stock Price\n\nDisruption:\nSecular Growth:\nNew Data Era:\n\nFEB '24\n\nPrice Target\n\nSource: Refinitiv, Morgan Stanley Research, Morgan Stanley Institutional Equities Division. The probabilities of our Bull,\nBase, and Bear case scenarios playing out were estimated with implied volatility data from the options market as of 03\nFeb, 2023. All figures are approximate risk-neutral probabilities of the stock reaching beyond the scenario price in either\nthree-months’ or one-years’ time. View explanation of Options Probabilities methodology here\n\nBULL CASE\n\n$230.00\n\nBASE CASE\n\n$175.00\n\nPositive\nPositive\nPositive\n\nView descriptions of Risk Rewards Themes here\n\nBEAR CASE\n\n$105.00\n\nLTV-driven; Implies 31.6x Bull FY24 EPS of\n$7.27\n\nSoTP driven; Implies 25.5x FY24 P/E (6.8x\nEV/Revs)\n\n4.7x EV/FY23e Sales; 17.6x FY24 Bear EPS\nof $5.96\n\niPhone shipments reach all-time record in\nFY23. Consumer demand remains resilient,\nand stronger than expected iPhone purchase\nintentions and mix shift to higher end\niPhone models (and capacity SKUs) drive\nstrong iPhone shipments. Total revenue\nreaches $457B in FY23, while EPS reaches\n$7.01. We shift to an lifetime value-based\nvaluation in our bull case, which gives Apple\ncredit for the shift towards subscription.\nOur $230 bull case valuation implies a 31.6x\ntarget P/E multiple.\n\nApple sees some impact from weaker\nconsumer. iPhone replacement cycles\nlengthen, Mac declines 20% Y/Y, and\nWearables/iPad decline low single digits, but\nlow double digit Services growth and iPhone\nASP growth are partial offsets, leading to\nFY23 rev -2% Y/Y. Mix towards higher\nmargin iPhones & Services and lower\nFX/inflationary headwinds leads to a mid44% FY23 GM, and $80B of share buybacks\ndrives EPS of $6.02 for FY23 or $6.85 for\nFY24. Apple starts to get credit for its\nupcoming AR/VR launch.\n\niPhone strength fails to materialize in FY23\n& consumer weakens more than expected.\nGrowth slows across the portfolio as\nconsumer discretionary income is pressured\n& WFH tailwinds fade, causing a weaker\nthan expected year of Product growth.\nWeaker consumer demand and FX\nheadwinds lead Services revenue growth to\ndecline MSD Y/Y. SOTP based bear case\nvaluation of $105 implies 17.6x FY24 bear\ncase EPS of $5.96 (vs. base case EPS of\n$6.85).\n\n6\n\n\x0cH\n\nRisk Reward – Apple, Inc. (AAPL.O)\nKEY EARNINGS INPUTS\nDrivers\n\n2022\n\n2023e\n\n2024e\n\n2025e\n\nTotal Revenue Growth (Y/Y) (%)\n\n7.8\n\n(1.7)\n\n9.8\n\n6.6\n\niPhone Revenue Growth (Y/Y) (%)\n\n7.0\n\n(2.5)\n\n9.7\n\n4.1\n\nServices Revenue Growth (Y/Y) (%)\n\n14.2\n\n10.3\n\n12.3\n\n13.2\n\nGross Margin (%)\n\n43.3\n\n44.0\n\n44.5\n\n44.8\n\nEPS Growth (Y/Y) (%)\n\n8.9\n\n(1.6)\n\n13.8\n\n7.3\n\nINVESTMENT DRIVERS\niPhone, Mac and iPad share gains\nGross margin upside\nFaster than expected Services growth\nShift to hardware subscription model\nExpanding product portfolio in new industries\nsuch as AR/VR, healthcare, or autos\n\nGLOBAL REVENUE EXPOSURE\nAPAC, ex Japan, Mainland\n0-10% China and India\n0-10% India\n0-10% Japan\n0-10% Latin America\n0-10% MEA\n0-10% UK\n10-20% Europe ex UK\n10-20% Mainland China\n40-50% North America\nSource: Morgan Stanley Research Estimate\nView explanation of regional hierarchies here\n\nMS ALPHA MODELS\n\n2/5\n\nBEST\n\n24 Month\nHorizon\n\n1/5\n\nMOST\n\n3 Month\nHorizon\n\nSource: Refinitiv, FactSet, Morgan Stanley Research; 1 is\nthe highest favored Quintile and 5 is the least favored\nQuintile\n\nRISKS TO PT/RATING\n\nMS ESTIMATES"}
+14:11:12,543 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,543 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': 'China\n40-50% North America\nSource: Morgan Stanley Research Estimate\nView explanation of regional hierarchies here\n\nMS ALPHA MODELS\n\n2/5\n\nBEST\n\n24 Month\nHorizon\n\n1/5\n\nMOST\n\n3 Month\nHorizon\n\nSource: Refinitiv, FactSet, Morgan Stanley Research; 1 is\nthe highest favored Quintile and 5 is the least favored\nQuintile\n\nRISKS TO PT/RATING\n\nMS ESTIMATES VS. CONSENSUS\n\nRISKS TO UPSIDE\n\nFY Sep 2024e\n\nPositive est revisions from Product and/or\nServices strength\nNew product launches outperform\nexpectations\niPhone share gains from easing competitive\npressure & aggressive US carrier promotions\nShift to a hardware subscription model\nRISKS TO DOWNSIDE\nWeaker global consumer spending\nProduction shortages/China lockdowns last\nlonger\nGreater competition in key markets\nIncreased regulation, particularly around App\nStore\n\nOWNERSHIP POSITIONING\nInst. Owners, % Active\n\n55%\n\nHF Sector Long/Short Ratio\n\n2.1x\n\nHF Sector Net Exposure\n\n30%\n\n425,548\n\nSales /\nRevenue\n($, mm)\n\n400,515\n\nEBITDA\n($, mm)\n\n126,306\n\nNet income\n($, mm)\n\n92,799\n\nEPS\n($)\n\n448,569\n424,221\n140,916\n147,689\n135,795\n106,154\n111,186\n102,012\n6.85\n\n5.95\n\n7.33\n6.68\n\nMean\n\nMorgan Stanley Estimates\n\nSource: Refinitiv, Morgan Stanley Research\n\nRefinitiv; MSPB Content. Includes certain hedge fund\nexposures held with MSPB. Information may be\ninconsistent with or may not reflect broader market\ntrends. Long/Short Ratio = Long Exposure / Short\nexposure. Sector % of Total Net Exposure = (For a\nparticular sector: Long Exposure - Short Exposure) /\n(Across all sectors: Long Exposure – Short Exposure).\n\n7\n\n\x0cDisclosure Section\nThe information and opinions in Morgan Stanley Research were prepared by Morgan Stanley & Co. LLC, and/or Morgan Stanley C.T.V.M. S.A., and/or Morgan\nStanley Mexico, Casa de Bolsa, S.A. de C.V., and/or Morgan Stanley Canada Limited. As used in this disclosure section, "Morgan Stanley" includes Morgan\nStanley & Co. LLC, Morgan Stanley C.T.V.M. S.A., Morgan Stanley Mexico, Casa de Bolsa, S.A. de C.V., Morgan Stanley Canada Limited and their affiliates\nas necessary.\nFor important disclosures, stock price charts and equity rating histories regarding companies that are the subject of this report, please see the Morgan\nStanley Research Disclosure Website at www.morganstanley.com/researchdisclosures, or contact your investment representative or Morgan Stanley\nResearch at 1585 Broadway, (Attention: Research Management), New York, NY, 10036 USA.\nFor valuation methodology and risks associated with any recommendation, rating or price target referenced in this research report, please contact the Client\nSupport Team as follows: US/Canada +1 800 303-2495; Hong Kong +852 2848-5999; Latin America +1 718 754-5444 (U.S.); London +44 (0)20-7425-8169;\nSingapore +65 6834-6860; Sydney +61 (0)2-9770-1505; Tokyo +81 (0)3-6836-9000. Alternatively you may contact your investment representative or Morgan\nStanley Research at 1585 Broadway, (Attention: Research Management), New York, NY 10036 USA.\n\nAnalyst Certification\nThe following analysts hereby certify that their views about the companies and their securities discussed in this report are accurately expressed and that they\nhave not received and will not receive direct or indirect compensation in exchange for expressing specific recommendations or views in this report: Erik W\nWoodring.\n.\n\nGlobal Research Conflict Management Policy\nMorgan Stanley Research has been published in accordance with our conflict management policy, which is available at\nwww.morganstanley.com/institutional/research/conflictpolicies. A Portuguese version of the policy can be found at www.morganstanley.com.br\n\nImportant Regulatory Disclosures on Subject Companies\nThe analyst or strategist (or a household member) identified below owns the following securities (or related derivatives): Maya C Neuman - Apple,\nInc.(common or preferred stock).\nAs of December 30, 2022, Morgan Stanley beneficially owned 1% or more of a class of common equity securities of the following companies covered in\nMorgan Stanley Research: Apple, Inc., CDW Corporation, Cricut Inc, Hewlett Packard Enterprise, HP Inc., IBM, Kornit Digital Ltd., Logitech International SA,\nNCR Corp., NetApp Inc, Pure Storage Inc, Seagate Technology, Sonos Inc., Xerox Corp.\nWithin the last 12 months, Morgan Stanley managed or co-managed a public offering (or 144A offering) of securities of Apple, Inc., Dell Technologies Inc..\nWithin the last 12 months, Morgan Stanley has received compensation for investment banking services from Apple, Inc., Dell Technologies Inc., IBM,\nSeagate Technology, Snap One Holdings Corp..\nIn the next 3 months, Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Apple, Inc., CDW\nCorporation, Cricut Inc, Dell Technologies Inc., GoPro Inc, Hewlett Packard Enterprise, HP Inc., IBM, Kornit Digital Ltd., Logitech International SA, NCR Corp.,\nNetApp Inc, Nutanix Inc, Pure Storage Inc, Resideo Technologies'}
+14:11:12,557 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,559 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': "., IBM,\nSeagate Technology, Snap One Holdings Corp..\nIn the next 3 months, Morgan Stanley expects to receive or intends to seek compensation for investment banking services from Apple, Inc., CDW\nCorporation, Cricut Inc, Dell Technologies Inc., GoPro Inc, Hewlett Packard Enterprise, HP Inc., IBM, Kornit Digital Ltd., Logitech International SA, NCR Corp.,\nNetApp Inc, Nutanix Inc, Pure Storage Inc, Resideo Technologies Inc, Seagate Technology, SmartRent, Inc., Snap One Holdings Corp., Sonos Inc., Teradata.\nWithin the last 12 months, Morgan Stanley has received compensation for products and services other than investment banking services from Apple, Inc.,\nCDW Corporation, Dell Technologies Inc., Hewlett Packard Enterprise, HP Inc., IBM, NCR Corp., NetApp Inc, Seagate Technology, Snap One Holdings Corp.,\nSonos Inc., Xerox Corp.\nWithin the last 12 months, Morgan Stanley has provided or is providing investment banking services to, or has an investment banking client relationship with,\nthe following company: Apple, Inc., CDW Corporation, Cricut Inc, Dell Technologies Inc., GoPro Inc, Hewlett Packard Enterprise, HP Inc., IBM, Kornit Digital\nLtd., Logitech International SA, NCR Corp., NetApp Inc, Nutanix Inc, Pure Storage Inc, Resideo Technologies Inc, Seagate Technology, SmartRent, Inc., Snap\nOne Holdings Corp., Sonos Inc., Teradata.\nWithin the last 12 months, Morgan Stanley has either provided or is providing non-investment banking, securities-related services to and/or in the past has\nentered into an agreement to provide services or has a client relationship with the following company: Apple, Inc., CDW Corporation, Dell Technologies Inc.,\nGarmin Ltd, GoPro Inc, Hewlett Packard Enterprise, HP Inc., IBM, NCR Corp., NetApp Inc, Nutanix Inc, Pure Storage Inc, Resideo Technologies Inc, Seagate\nTechnology, Snap One Holdings Corp., Sonos Inc., Xerox Corp.\nAn employee, director or consultant of Morgan Stanley is a director of HP Inc.. This person is not a research analyst or a member of a research analyst's\nhousehold.\nMorgan Stanley & Co. LLC makes a market in the securities of Apple, Inc., CDW Corporation, Dell Technologies Inc., Garmin Ltd, GoPro Inc, Hewlett\nPackard Enterprise, HP Inc., IBM, Kornit Digital Ltd., Logitech International SA, NCR Corp., NetApp Inc, Nutanix Inc, Pure Storage Inc, Resideo Technologies\nInc, Seagate Technology, Snap One Holdings Corp., Sonos Inc., Teradata, Vivint Smart Home Inc, Xerox Corp.\nThe equity research analysts or strategists principally responsible for the preparation of Morgan Stanley Research have received compensation based upon\nvarious factors, including quality of research, investor client feedback, stock picking, competitive factors, firm revenues and overall investment banking\nrevenues. Equity Research analysts' or strategists' compensation is not linked to investment banking or capital markets transactions performed by Morgan\nStanley or the profitability or revenues of particular trading desks.\nMorgan Stanley and its affiliates do business that relates to companies/instruments covered in Morgan Stanley Research, including market making, providing\nliquidity, fund management, commercial banking, extension of credit, investment services and investment banking. Morgan Stanley sells to and buys from\ncustomers the securities/instruments of companies covered in Morgan Stanley Research on a principal basis. Morgan Stanley may have a position in the debt\nof the Company or instruments discussed in this report. Morgan Stanley trades or may trade as principal in the debt securities (or in related derivatives) that\nare the subject of the debt research report.\nCertain disclosures listed above are also for compliance with applicable regulations in non-US jurisdictions.\n\nSTOCK RATINGS\nMorgan Stanley uses a relative rating system using terms such as Overweight, Equal-weight, Not-Rated or Underweight (see definitions below). Morgan\nStanley does not assign ratings of Buy, Hold or Sell to the stocks we cover. Overweight, Equal-weight, Not-Rated and Underweight are not the equivalent of\nbuy, hold and sell. Investors should carefully read the definitions of all ratings used in Morgan Stanley Research. In addition, since Morgan Stanley Research\ncontains more complete information concerning the analyst's views, investors should carefully read Morgan Stanley Research, in its entirety, and not infer the\ncontents from the rating alone. In any case, ratings (or research) should not be used or relied upon as investment advice. An investor's decision to buy or sell a\nstock should depend on individual circumstances (such as the investor's existing holdings) and other considerations.\n\nGlobal Stock Ratings Distribution\n(as of January 31, 2023)\nThe Stock Ratings described below apply to Morgan Stanley's Fundamental Equity Research and do not apply to Debt Research produced by the Firm.\nFor disclosure purposes only (in accordance with FINRA requirements), we include the category headings of Buy, Hold, and Sell alongside our ratings of\nOverweight, Equal-weight, Not-Rated and Underweight. Morgan Stanley does not assign ratings of Buy, Hold or Sell to the stocks we cover. Overweight,\n8\n\n\x0cEqual-weight, Not-Rated and Underweight are not the equivalent of buy, hold, and sell but represent recommended relative weightings (see definitions below).\nTo satisfy regulatory requirements, we correspond Overweight, our most positive stock rating, with a buy recommendation; we correspond Equal-weight and\nNot-Rated to hold and Underweight to sell recommendations, respectively.\nCOVERAGE UNIVERSE\n\nINVESTMENT BANKING CLIENTS (IBC)\n\nOTHER MATERIAL\nINVESTMENT SERVICES\nCLIENTS (MISC)\n\nSTOCK RATING\nCATEGORY\n\nCOUNT\n\n% OF\nTOTAL\n\nCOUNT"}
+14:11:12,561 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,561 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': 'and sell but represent recommended relative weightings (see definitions below).\nTo satisfy regulatory requirements, we correspond Overweight, our most positive stock rating, with a buy recommendation; we correspond Equal-weight and\nNot-Rated to hold and Underweight to sell recommendations, respectively.\nCOVERAGE UNIVERSE\n\nINVESTMENT BANKING CLIENTS (IBC)\n\nOTHER MATERIAL\nINVESTMENT SERVICES\nCLIENTS (MISC)\n\nSTOCK RATING\nCATEGORY\n\nCOUNT\n\n% OF\nTOTAL\n\nCOUNT\n\n% OF\nTOTAL IBC\n\n% OF\nRATING\nCATEGORY\n\nCOUNT\n\n% OF\nTOTAL\nOTHER\nMISC\n\nOverweight/Buy\nEqual-weight/Hold\nNot-Rated/Hold\nUnderweight/Sell\n\n1360\n1672\n4\n658\n\n37%\n45%\n0%\n18%\n\n277\n292\n0\n82\n\n43%\n45%\n0%\n13%\n\n20%\n17%\n0%\n12%\n\n599\n737\n0\n232\n\n38%\n47%\n0%\n15%\n\nTOTAL\n\n3,694\n\n651\n\n1568\n\nData include common stock and ADRs currently assigned ratings. Investment Banking Clients are companies from whom Morgan Stanley received investment\nbanking compensation in the last 12 months. Due to rounding off of decimals, the percentages provided in the "% of total" column may not add up to exactly\n100 percent.\n\nAnalyst Stock Ratings\nOverweight (O). The stock\'s total return is expected to exceed the average total return of the analyst\'s industry (or industry team\'s) coverage universe, on a\nrisk-adjusted basis, over the next 12-18 months.\nEqual-weight (E). The stock\'s total return is expected to be in line with the average total return of the analyst\'s industry (or industry team\'s) coverage universe,\non a risk-adjusted basis, over the next 12-18 months.\nNot-Rated (NR). Currently the analyst does not have adequate conviction about the stock\'s total return relative to the average total return of the analyst\'s\nindustry (or industry team\'s) coverage universe, on a risk-adjusted basis, over the next 12-18 months.\nUnderweight (U). The stock\'s total return is expected to be below the average total return of the analyst\'s industry (or industry team\'s) coverage universe, on a\nrisk-adjusted basis, over the next 12-18 months.\nUnless otherwise specified, the time frame for price targets included in Morgan Stanley Research is 12 to 18 months.\n\nAnalyst Industry Views\nAttractive (A): The analyst expects the performance of his or her industry coverage universe over the next 12-18 months to be attractive vs. the relevant broad\nmarket benchmark, as indicated below.\nIn-Line (I): The analyst expects the performance of his or her industry coverage universe over the next 12-18 months to be in line with the relevant broad market\nbenchmark, as indicated below.\nCautious (C): The analyst views the performance of his or her industry coverage universe over the next 12-18 months with caution vs. the relevant broad market\nbenchmark, as indicated below.\nBenchmarks for each region are as follows: North America - S&P 500; Latin America - relevant MSCI country index or MSCI Latin America Index; Europe MSCI Europe; Japan - TOPIX; Asia - relevant MSCI country index or MSCI sub-regional index or MSCI AC Asia Pacific ex Japan Index.\n\nStock Price, Price Target and Rating History (See Rating Definitions)\n\n9\n\n\x0cImportant Disclosures for Morgan Stanley Smith Barney LLC & E*TRADE Securities LLC Customers\nImportant disclosures regarding the relationship between the companies that are the subject of Morgan Stanley Research and Morgan Stanley Smith Barney\nLLC or Morgan Stanley or any of their affiliates, are available on the Morgan Stanley Wealth Management disclosure website at\nwww.morganstanley.com/online/researchdisclosures. For Morgan Stanley specific disclosures, you may refer to\nwww.morganstanley.com/researchdisclosures.\nEach Morgan Stanley research report is reviewed and approved on behalf of Morgan Stanley Smith Barney LLC and E*TRADE Securities LLC. This review and\napproval is conducted by the same person who reviews the research report on behalf of Morgan Stanley. This could create a conflict of interest.\n\nOther Important Disclosures\nMorgan Stanley & Co. International PLC and its affiliates have a significant financial interest in the debt securities of Apple, Inc., Hewlett Packard Enterprise,\nHP Inc., IBM, NCR Corp., Nutanix Inc, Snap One Holdings Corp., Sonos Inc., Xerox Corp.\nMorgan Stanley Research policy is to update research reports as and when the Research Analyst and Research Management deem appropriate, based on\ndevelopments with the issuer, the sector, or the market that may have a material impact on the research views or opinions stated therein. In addition, certain\nResearch publications are intended to be updated on a regular periodic basis (weekly/monthly/quarterly/annual) and will ordinarily be updated with that\nfrequency, unless the Research Analyst and Research Management determine that a different publication schedule is appropriate based on current conditions.\nMorgan Stanley is not acting as a municipal advisor and the opinions or views contained herein are not intended to be, and do not constitute, advice within the\nmeaning of Section 975 of the Dodd-Frank Wall Street Reform and Consumer Protection Act.\nMorgan Stanley produces an equity research product called a "Tactical Idea." Views contained in a "Tactical Idea" on a particular stock may be contrary to the\nrecommendations or views expressed in research on the same stock. This may be the result of differing time horizons, methodologies, market events, or other\nfactors. For all research available on a particular stock, please contact your sales representative or go to Matrix at http://www.morganstanley.com/matrix.\nMorgan Stanley'}
+14:11:12,561 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,561 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': 'organ Stanley produces an equity research product called a "Tactical Idea." Views contained in a "Tactical Idea" on a particular stock may be contrary to the\nrecommendations or views expressed in research on the same stock. This may be the result of differing time horizons, methodologies, market events, or other\nfactors. For all research available on a particular stock, please contact your sales representative or go to Matrix at http://www.morganstanley.com/matrix.\nMorgan Stanley Research is provided to our clients through our proprietary research portal on Matrix and also distributed electronically by Morgan Stanley to\nclients. Certain, but not all, Morgan Stanley Research products are also made available to clients through third-party vendors or redistributed to clients through\nalternate electronic means as a convenience. For access to all available Morgan Stanley Research, please contact your sales representative or go to Matrix at\nhttp://www.morganstanley.com/matrix.\nAny access and/or use of Morgan Stanley Research is subject to Morgan Stanley\'s Terms of Use (http://www.morganstanley.com/terms.html). By accessing\nand/or using Morgan Stanley Research, you are indicating that you have read and agree to be bound by our Terms of Use\n(http://www.morganstanley.com/terms.html). In addition you consent to Morgan Stanley processing your personal data and using cookies in accordance with\nour Privacy Policy and our Global Cookies Policy (http://www.morganstanley.com/privacy_pledge.html), including for the purposes of setting your preferences\nand to collect readership data so that we can deliver better and more personalized service and products to you. To find out more information about how Morgan\nStanley processes personal data, how we use cookies and how to reject cookies see our Privacy Policy and our Global Cookies Policy\n(http://www.morganstanley.com/privacy_pledge.html).\nIf you do not agree to our Terms of Use and/or if you do not wish to provide your consent to Morgan Stanley processing your personal data or using cookies\nplease do not access our research.\nMorgan Stanley Research does not provide individually tailored investment advice. Morgan Stanley Research has been prepared without regard to the\ncircumstances and objectives of those who receive it. Morgan Stanley recommends that investors independently evaluate particular investments and\nstrategies, and encourages investors to seek the advice of a financial adviser. The appropriateness of an investment or strategy will depend on an investor\'s\ncircumstances and objectives. The securities, instruments, or strategies discussed in Morgan Stanley Research may not be suitable for all investors, and\n10\n\n\x0ccertain investors may not be eligible to purchase or participate in some or all of them. Morgan Stanley Research is not an offer to buy or sell or the solicitation\nof an offer to buy or sell any security/instrument or to participate in any particular trading strategy. The value of and income from your investments may vary\nbecause of changes in interest rates, foreign exchange rates, default rates, prepayment rates, securities/instruments prices, market indexes, operational or\nfinancial conditions of companies or other factors. There may be time limitations on the exercise of options or other rights in securities/instruments\ntransactions. Past performance is not necessarily a guide to future performance. Estimates of future performance are based on assumptions that may not be\nrealized. If provided, and unless otherwise stated, the closing price on the cover page is that of the primary exchange for the subject company\'s\nsecurities/instruments.\nThe fixed income research analysts, strategists or economists principally responsible for the preparation of Morgan Stanley Research have received\ncompensation based upon various factors, including quality, accuracy and value of research, firm profitability or revenues (which include fixed income trading\nand capital markets profitability or revenues), client feedback and competitive factors. Fixed Income Research analysts\', strategists\' or economists\'\ncompensation is not linked to investment banking or capital markets transactions performed by Morgan Stanley or the profitability or revenues of particular\ntrading desks.\nThe "Important Regulatory Disclosures on Subject Companies" section in Morgan Stanley Research lists all companies mentioned where Morgan Stanley\nowns 1% or more of a class of common equity securities of the companies. For all other companies mentioned in Morgan Stanley Research, Morgan Stanley\nmay have an investment of less than 1% in securities/instruments or derivatives of securities/instruments of companies and may trade them in ways different\nfrom those discussed in Morgan Stanley Research. Employees of Morgan Stanley not involved in the preparation of Morgan Stanley Research may have\ninvestments in securities/instruments or derivatives of securities/instruments of companies mentioned and may trade them in ways different from those\ndiscussed in Morgan Stanley Research. Derivatives may be issued by Morgan Stanley or associated persons.\nWith the exception of information regarding Morgan Stanley, Morgan Stanley Research is based on public information. Morgan Stanley makes every effort to\nuse reliable, comprehensive information, but we make no representation that it is accurate or complete. We have no obligation to tell you when opinions or\ninformation in Morgan Stanley Research change apart from when we intend to discontinue equity research coverage of a subject company. Facts and views\npresented in Morgan Stanley Research have not been reviewed by, and may not reflect information known to, professionals in other Morgan Stanley business\nareas, including investment banking personnel.\nMorgan Stanley Research personnel may participate in company events such as site visits and are generally prohibited from accepting payment by the\ncompany of associated expenses unless pre-approved by authorized members of Research management.\nMorgan Stanley may make investment decisions that are inconsistent with the recommendations or views in this report.\nTo our readers based in Taiwan or trading in Taiwan securities/instruments: Information on securities/instruments that trade in Taiwan is distributed by Morgan\nStanley Taiwan Limited ("MSTL"). Such information is for your reference only. The reader should independently evaluate the investment risks and is solely\nresponsible for their investment decisions. Morgan Stanley Research may not be distributed to the'}
+14:11:12,566 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,566 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': '-approved by authorized members of Research management.\nMorgan Stanley may make investment decisions that are inconsistent with the recommendations or views in this report.\nTo our readers based in Taiwan or trading in Taiwan securities/instruments: Information on securities/instruments that trade in Taiwan is distributed by Morgan\nStanley Taiwan Limited ("MSTL"). Such information is for your reference only. The reader should independently evaluate the investment risks and is solely\nresponsible for their investment decisions. Morgan Stanley Research may not be distributed to the public media or quoted or used by the public media without\nthe express written consent of Morgan Stanley. Any non-customer reader within the scope of Article 7-1 of the Taiwan Stock Exchange Recommendation\nRegulations accessing and/or receiving Morgan Stanley Research is not permitted to provide Morgan Stanley Research to any third party (including but not\nlimited to related parties, affiliated companies and any other third parties) or engage in any activities regarding Morgan Stanley Research which may create or\ngive the appearance of creating a conflict of interest. Information on securities/instruments that do not trade in Taiwan is for informational purposes only and is\nnot to be construed as a recommendation or a solicitation to trade in such securities/instruments. MSTL may not execute transactions for clients in these\nsecurities/instruments.\nMorgan Stanley is not incorporated under PRC law and the research in relation to this report is conducted outside the PRC. Morgan Stanley Research does\nnot constitute an offer to sell or the solicitation of an offer to buy any securities in the PRC. PRC investors shall have the relevant qualifications to invest in\nsuch securities and shall be responsible for obtaining all relevant approvals, licenses, verifications and/or registrations from the relevant governmental\nauthorities themselves. Neither this report nor any part of it is intended as, or shall constitute, provision of any consultancy or advisory service of securities\ninvestment as defined under PRC law. Such information is provided for your reference only.\nMorgan Stanley Research is disseminated in Brazil by Morgan Stanley C.T.V.M. S.A. located at Av. Brigadeiro Faria Lima, 3600, 6th floor, São Paulo - SP,\nBrazil; and is regulated by the Comissão de Valores Mobiliários; in Mexico by Morgan Stanley México, Casa de Bolsa, S.A. de C.V which is regulated by\nComision Nacional Bancaria y de Valores. Paseo de los Tamarindos 90, Torre 1, Col. Bosques de las Lomas Floor 29, 05120 Mexico City; in Japan by\nMorgan Stanley MUFG Securities Co., Ltd. and, for Commodities related research reports only, Morgan Stanley Capital Group Japan Co., Ltd; in Hong Kong\nby Morgan Stanley Asia Limited (which accepts responsibility for its contents) and by Morgan Stanley Bank Asia Limited; in Singapore by Morgan Stanley\nAsia (Singapore) Pte. (Registration number 199206298Z) and/or Morgan Stanley Asia (Singapore) Securities Pte Ltd (Registration number 200008434H),\nregulated by the Monetary Authority of Singapore (which accepts legal responsibility for its contents and should be contacted with respect to any matters\narising from, or in connection with, Morgan Stanley Research) and by Morgan Stanley Bank Asia Limited, Singapore Branch (Registration number\nT14FC0118J); in Australia to "wholesale clients" within the meaning of the Australian Corporations Act by Morgan Stanley Australia Limited A.B.N. 67 003 734\n576, holder of Australian financial services license No. 233742, which accepts responsibility for its contents; in Australia to "wholesale clients" and "retail\nclients" within the meaning of the Australian Corporations Act by Morgan Stanley Wealth Management Australia Pty Ltd (A.B.N. 19 009 145 555, holder of\nAustralian financial services license No. 240813, which accepts responsibility for its contents; in Korea by Morgan Stanley & Co International plc, Seoul\nBranch; in India by Morgan Stanley India Company Private Limited; in Canada by Morgan Stanley Canada Limited; in Germany and the European Economic\nArea where required by Morgan Stanley Europe S.E., authorised and regulated by Bundesanstalt fuer Finanzdienstleistungsaufsicht (BaFin) under the\nreference number 149169; in the US by Morgan Stanley & Co. LLC, which accepts responsibility for its contents. Morgan Stanley & Co. International plc,\nauthorized by the Prudential Regulatory Authority and regulated by the Financial Conduct Authority and the Prudential Regulatory Authority, disseminates in\nthe UK research that it has prepared, and approves solely for the purposes of section 21 of the Financial Services and Markets Act 2000, research which has\nbeen prepared by any of its affiliates. RMB Morgan Stanley Proprietary Limited is a member of the JSE Limited and A2X (Pty) Ltd. RMB Morgan Stanley\nProprietary Limited is a joint venture owned equally by Morgan Stanley International Holdings Inc. and RMB Investment Advisory (Proprietary) Limited, which is\nwholly owned by FirstRand Limited. The information in Morgan Stanley Research is being disseminated by Morgan Stanley Saudi Arabia, regulated by the\nCapital Market Authority in the Kingdom of Saudi Arabia , and is directed at Sophisticated investors only.\nThe information in Morgan Stanley Research is being communicated by Morgan Stanley & Co. International plc (DIFC Branch), regulated by the Dubai\nFinancial Services Authority (the DFSA), and is directed at Professional Clients only, as defined by the DFSA. The financial products or financial services to\nwhich this research relates will only be made available to a customer who we are satisfied meets the regulatory criteria to be a Professional Client. A\ndistribution of the different MS Research ratings or recommendations, in percentage terms for Investments in each sector covered, is available upon request'}
+14:11:12,566 root ERROR error extracting graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 123, in __call__
+    result = await self._process_document(text, prompt_variables)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\graph\extractors\graph\graph_extractor.py", line 151, in _process_document
+    response = await self._llm(
+               ^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\json_parsing_llm.py", line 34, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_token_replacing_llm.py", line 37, in __call__
+    return await self._delegate(input, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\openai\openai_history_tracking_llm.py", line 33, in __call__
+    output = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\caching_llm.py", line 104, in __call__
+    result = await self._delegate(input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 177, in __call__
+    result, start = await execute_with_retry()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 159, in execute_with_retry
+    async for attempt in retryer:
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 166, in __anext__
+    do = await self.iter(retry_state=self._retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\asyncio\__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\tenacity\__init__.py", line 398, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\base\rate_limiting_llm.py", line 162, in execute_with_retry
+    await self._rate_limiter.acquire(input_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\llm\limiting\tpm_rpm_limiter.py", line 32, in acquire
+    await self._tpm_limiter.acquire(num_tokens)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\aiolimiter\leakybucket.py", line 95, in acquire
+    raise ValueError("Can't acquire more than the maximum capacity")
+ValueError: Can't acquire more than the maximum capacity
+14:11:12,566 graphrag.index.reporting.file_workflow_callbacks INFO Entity Extraction Error details={'doc_index': 0, 'text': '& Co. International plc (DIFC Branch), regulated by the Dubai\nFinancial Services Authority (the DFSA), and is directed at Professional Clients only, as defined by the DFSA. The financial products or financial services to\nwhich this research relates will only be made available to a customer who we are satisfied meets the regulatory criteria to be a Professional Client. A\ndistribution of the different MS Research ratings or recommendations, in percentage terms for Investments in each sector covered, is available upon request\nfrom your sales representative.\nThe information in Morgan Stanley Research is being communicated by Morgan Stanley & Co. International plc (QFC Branch), regulated by the Qatar\nFinancial Centre Regulatory Authority (the QFCRA), and is directed at business customers and market counterparties only and is not intended for Retail\nCustomers as defined by the QFCRA.\nAs required by the Capital Markets Board of Turkey, investment information, comments and recommendations stated here, are not within the scope of\ninvestment advisory activity. Investment advisory service is provided exclusively to persons based on their risk and income preferences by the authorized firms.\nComments and recommendations stated here are general in nature. These opinions may not fit to your financial status, risk and return preferences. For this\nreason, to make an investment decision by relying solely to this information stated here may not bring about outcomes that fit your expectations.\nThe trademarks and service marks contained in Morgan Stanley Research are the property of their respective owners. Third-party data providers make no\nwarranties or representations relating to the accuracy, completeness, or timeliness of the data they provide and shall not have liability for any damages relating\n11\n\n\x0cto such data. The Global Industry Classification Standard (GICS) was developed by and is the exclusive property of MSCI and S&P.\nMorgan Stanley Research, or any portion thereof may not be reprinted, sold or redistributed without the written consent of Morgan Stanley.\nIndicators and trackers referenced in Morgan Stanley Research may not be used as, or treated as, a benchmark under Regulation EU 2016/1011, or any other\nsimilar framework.\nThe issuers and/or fixed income products recommended or discussed in certain fixed income research reports may not be continuously followed. Accordingly,\ninvestors should regard those fixed income research reports as providing stand-alone analysis and should not expect continuing analysis or additional reports\nrelating to such issuers and/or individual fixed income products.\nMorgan Stanley may hold, from time to time, material financial and commercial interests regarding the company subject to the Research report.\nINDUSTRY COVERAGE: IT Hardware\nCOMPANY (TICKER)\n\nRATING (AS OF)\n\nPRICE* (02/03/2023)\n\nO (05/26/2009)\nO (03/30/2022)\nU (08/12/2021)\nE (03/30/2022)\nE (01/07/2015)\nE (11/11/2021)\nU (03/30/2022)\nE (01/18/2023)\nE (01/18/2023)\nU (09/27/2021)\nE (09/19/2022)\nE (03/16/2021)\nO (01/18/2023)\nE (02/14/2022)\nE (12/08/2021)\nE (06/14/2022)\nO (09/19/2021)\nE (08/11/2020)\nU (02/03/2021)\n\n$154.50\n$201.08\n$10.38\n$42.24\n$101.54\n$5.69\n$30.51\n$136.94\n$27.59\n$60.63\n$28.39\n$19.75\n$70.89\n$3.16\n$10.81\n$18.91\n$35.50\n$11.97\n$16.96\n\nU (04/12/2022)\nU (12/13/2022)\nE (05/28/2019)\nO (10/31/2022)\n\n$16.33\n$67.62\n$29.24\n$29.91\n\nErik W Woodring\nApple, Inc. (AAPL.O)\nCDW Corporation (CDW.O)\nCricut Inc (CRCT.O)\nDell Technologies Inc. (DELL.N)\nGarmin Ltd (GRMN.N)\nGoPro Inc (GPRO.O)\nHP Inc. (HPQ.N)\nIBM (IBM.N)\nKornit Digital Ltd. (KRNT.O)\nLogitech International SA (LOGI.O)\nNCR Corp. (NCR.N)\nResideo Technologies Inc (REZI.N)\nSeagate Technology (STX.O)\nSmartRent, Inc. (SMRT.N)\nSnap One Holdings Corp. (SNPO.O)\nSonos Inc. (SONO.O)\nTeradata (TDC.N)\nVivint Smart Home Inc (VVNT.N)\nXerox Corp (XRX.O)\n\nMeta A Marshall\nHewlett Packard Enterprise (HPE.N)\nNetApp Inc (NTAP.O)\nNutanix Inc (NTNX.O)\nPure Storage Inc (PSTG.N)\n\nStock Ratings are subject to change. Please see latest research for each company.\n* Historical prices are not split adjusted.\n\n© 2023 Morgan Stanley\n\n12'}
+14:11:12,578 datashaper.workflow.workflow INFO executing verb merge_graphs
+14:11:12,578 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_base_extracted_entities.parquet
+14:11:12,689 graphrag.index.run INFO Running workflow: create_summarized_entities...
+14:11:12,689 graphrag.index.run INFO dependencies for create_summarized_entities: ['create_base_extracted_entities']
+14:11:12,689 graphrag.index.run INFO read table from storage: create_base_extracted_entities.parquet
+14:11:12,704 datashaper.workflow.workflow INFO executing verb summarize_descriptions
+14:11:12,704 graphrag.index.emit.parquet_table_emitter INFO emitting parquet table create_summarized_entities.parquet
+14:11:12,821 graphrag.index.run INFO Running workflow: create_base_entity_graph...
+14:11:12,824 graphrag.index.run INFO dependencies for create_base_entity_graph: ['create_summarized_entities']
+14:11:12,824 graphrag.index.run INFO read table from storage: create_summarized_entities.parquet
+14:11:12,824 datashaper.workflow.workflow INFO executing verb cluster_graph
+14:11:12,839 graphrag.index.verbs.graph.clustering.cluster_graph WARNING Graph has no nodes
+14:11:12,847 datashaper.workflow.workflow ERROR Error executing verb "cluster_graph" in create_base_entity_graph: Columns must be same length as key
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\datashaper\workflow\workflow.py", line 410, in _execute_verb
+    result = node.verb.func(**verb_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\verbs\graph\clustering\cluster_graph.py", line 102, in cluster_graph
+    output_df[[level_to, to]] = pd.DataFrame(
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\frame.py", line 4299, in __setitem__
+    self._setitem_array(key, value)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\frame.py", line 4341, in _setitem_array
+    check_key_length(self.columns, key, value)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\indexers\utils.py", line 390, in check_key_length
+    raise ValueError("Columns must be same length as key")
+ValueError: Columns must be same length as key
+14:11:12,848 graphrag.index.reporting.file_workflow_callbacks INFO Error executing verb "cluster_graph" in create_base_entity_graph: Columns must be same length as key details=None
+14:11:12,848 graphrag.index.run ERROR error running workflow create_base_entity_graph
+Traceback (most recent call last):
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\run.py", line 323, in run_pipeline
+    result = await workflow.run(context, callbacks)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\datashaper\workflow\workflow.py", line 369, in run
+    timing = await self._execute_verb(node, context, callbacks)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\datashaper\workflow\workflow.py", line 410, in _execute_verb
+    result = node.verb.func(**verb_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\graphrag\index\verbs\graph\clustering\cluster_graph.py", line 102, in cluster_graph
+    output_df[[level_to, to]] = pd.DataFrame(
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\frame.py", line 4299, in __setitem__
+    self._setitem_array(key, value)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\frame.py", line 4341, in _setitem_array
+    check_key_length(self.columns, key, value)
+  File "D:\GraphRAG-test\graphragvenv\Lib\site-packages\pandas\core\indexers\utils.py", line 390, in check_key_length
+    raise ValueError("Columns must be same length as key")
+ValueError: Columns must be same length as key
+14:11:12,848 graphrag.index.reporting.file_workflow_callbacks INFO Error running pipeline! details=None

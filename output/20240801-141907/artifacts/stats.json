@@ -1,0 +1,21 @@
+{
+    "total_runtime": 0.4075744152069092,
+    "num_documents": 3,
+    "input_load_time": 0,
+    "workflows": {
+        "create_base_text_units": {
+            "overall": 0.22033262252807617,
+            "0_orderby": 0.0,
+            "1_zip": 0.0,
+            "2_aggregate_override": 0.0,
+            "3_chunk": 0.18370628356933594,
+            "4_select": 0.006491661071777344,
+            "5_unroll": 0.0039043426513671875,
+            "6_rename": 0.0024077892303466797,
+            "7_genid": 0.0068318843841552734,
+            "8_unzip": 0.003029346466064453,
+            "9_copy": 0.0,
+            "10_filter": 0.013961315155029297
+        }
+    }
+}
